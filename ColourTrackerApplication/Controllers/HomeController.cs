@@ -49,7 +49,7 @@ namespace ColourTrackerApplication.Controllers
             return Json(_colours);
         }
 
-        [Route("comments/add")]
+        [Route("colours/new")]
         [HttpPost]
         public ActionResult AddColour(ColourModel colour)
         {
