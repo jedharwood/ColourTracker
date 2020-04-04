@@ -1,9 +1,29 @@
 ﻿class ColourDisplay extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { data: [] };
+    }
+    loadColoursFromServer() {
+        const xhr = new XMLHttpRequest();
+        xhr.open('get', this.props.url, true);
+        xhr.onload = () => {
+            const data = JSON.parse(xhr.responseText);
+            this.setState({ data: data });
+        };
+        xhr.send();
+    }
+    componentDidMount() {
+        this.loadColoursFromServer();
+        window.setInterval(
+            () => this.loadColoursFromServer(),
+            this.props.pollInterval,
+        );
+    }
     render() {
         return (
             <div className="colourDisplay">
                 <h1>Colours</h1>
-                <ColourList data={this.props.data}/>
+                <ColourList data={this.state.data}/>
                 <AddColourForm />
             </div>
         );
@@ -14,8 +34,8 @@ class ColourList extends React.Component {
     render() {
         const colourNodes = this.props.data.map(colour => (
             <Colour name={colour.name} key={colour.id}>
-                brand: {colour.brand}
-                exp: {colour.expiry}
+                <div>brand: {colour.brand}</div>
+                <div>exp: {colour.expiry}</div>
             </Colour>
         ));
         return <div className="colourList">{colourNodes}</div>;
@@ -25,7 +45,13 @@ class ColourList extends React.Component {
 class AddColourForm extends React.Component {
     render() {
         return (
-            <div className="addColourForm">Add a colour to your list</div>
+            <form className="addColourForm">
+                <h2>Add a colour to your list</h2>
+                <input type="text" placeholder="Colour" />
+                <input type="text" placeholder="Brand" />
+                <input type="text" placeholder="Expiry" />
+                <input type="submit" value="Post" />
+            </form>           
         );
     }
 }
@@ -41,25 +67,7 @@ class Colour extends React.Component {
     }
 }
 
-const data = [
-    {
-        id: 1,
-        name: 'Red',
-        brand: 'Waverly',
-        expiry: '03/22'
-    },
-    {
-        id: 2,
-        name: 'Golden Yellow',
-        brand: 'Old Gold',
-        expiry: '06/23'
-    },
-    {
-        id: 3,
-        name: 'Olive Green',
-        brand: 'DermaGlo',
-        expiry: '06/24'
-    }
-];
-
-ReactDOM.render(<ColourDisplay data={data} />, document.getElementById('content'),);
+ReactDOM.render(
+    <ColourDisplay url="/colours" pollInterval={2000} />,
+    document.getElementById('content')
+);
