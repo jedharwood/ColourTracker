@@ -16,7 +16,11 @@ namespace ColourTrackerRepositories
             throw new NotImplementedException();
         }
 
-        public Task<List<ColourDTO>> GetAllColours(List<ColourDTO> colours)
+        //public Task<List<ColourDTO>> GetAllColours(List<ColourDTO> colours)
+        //{
+        //    throw new NotImplementedException();
+        //}
+        public List<ColourDTO> GetAllColours()
         {
             throw new NotImplementedException();
         }
