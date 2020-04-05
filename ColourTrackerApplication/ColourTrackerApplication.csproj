@@ -28,5 +28,8 @@
     <ProjectReference Include="..\ColourTrackerRepositories\ColourTrackerRepositories.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\ColourTrackerStorageHelper\ColourTrackerStorageHelper.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>

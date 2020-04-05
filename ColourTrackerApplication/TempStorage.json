@@ -1,0 +1,22 @@
+﻿{
+  "TempData": [
+    {
+      "id": 1,
+      "name": "Red",
+      "brand": "Waverly",
+      "expiry": "06/22"
+    },
+    {
+      "id": 2,
+      "name": "Medium Blue",
+      "brand": "Solid",
+      "expiry": "04/26"
+    },
+    {
+      "id": 3,
+      "name": "Dragon Green",
+      "brand": "Eternal",
+      "expiry": "12/21"
+    }
+  ]
+}
