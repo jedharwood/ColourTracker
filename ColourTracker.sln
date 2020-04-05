@@ -3,6 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColourTrackerApplication", "ColourTrackerApplication\ColourTrackerApplication.csproj", "{5CA83387-9139-49CB-B276-B100F693493E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColourTrackerStorageHelper", "ColourTrackerStorageHelper\ColourTrackerStorageHelper.csproj", "{45956400-7993-4A6B-ACB2-CEC21B3B6A0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColourTrackerDTOs", "ColourTrackerDTOs\ColourTrackerDTOs.csproj", "{3321B25A-15E9-47BC-A645-B3797BD7128C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColourTrackerRepositories", "ColourTrackerRepositories\ColourTrackerRepositories.csproj", "{5856B0E0-3BE7-4282-87D7-3630FDD3745D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +19,17 @@ Global
 		{5CA83387-9139-49CB-B276-B100F693493E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CA83387-9139-49CB-B276-B100F693493E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CA83387-9139-49CB-B276-B100F693493E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45956400-7993-4A6B-ACB2-CEC21B3B6A0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45956400-7993-4A6B-ACB2-CEC21B3B6A0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45956400-7993-4A6B-ACB2-CEC21B3B6A0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45956400-7993-4A6B-ACB2-CEC21B3B6A0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3321B25A-15E9-47BC-A645-B3797BD7128C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3321B25A-15E9-47BC-A645-B3797BD7128C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3321B25A-15E9-47BC-A645-B3797BD7128C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3321B25A-15E9-47BC-A645-B3797BD7128C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5856B0E0-3BE7-4282-87D7-3630FDD3745D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5856B0E0-3BE7-4282-87D7-3630FDD3745D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5856B0E0-3BE7-4282-87D7-3630FDD3745D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5856B0E0-3BE7-4282-87D7-3630FDD3745D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
