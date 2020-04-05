@@ -1,3 +1,4 @@
+using ColourTrackerRepositories;
 using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using Microsoft.AspNetCore.Builder;
@@ -22,6 +23,8 @@ namespace ColourTrackerApplication
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            services.AddTransient<IStorageRepository, StorageRepository>();
 
             services.AddReact();
 
