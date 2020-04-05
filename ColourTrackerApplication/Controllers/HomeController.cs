@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ColourTrackerApplication.Models;
 using System.Collections.Generic;
+using ColourTrackerDTOs;
 
 namespace ColourTrackerApplication.Controllers
 {

@@ -21,4 +21,9 @@
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore" Version="3.4.5" />
     <PackageReference Include="JavaScriptEngineSwitcher.Extensions.MsDependencyInjection" Version="3.3.0" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ColourTrackerDTOs\ColourTrackerDTOs.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
