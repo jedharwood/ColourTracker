@@ -7,8 +7,7 @@ namespace ColourTrackerRepositories
 {
     public interface IStorageRepository
     {
-        //Task<List<ColourDTO>> GetAllColours(List<ColourDTO> colours);
-        public List<ColourDTO> GetAllColours();
-        public ColourDTO AddNewColour(ColourDTO colour);
+        List<ColourModel> GetAllColours();
+        ColourModel AddNewColour(ColourModel colour);
     }
 }
