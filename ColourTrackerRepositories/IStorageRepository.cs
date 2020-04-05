@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using ColourTrackerDTOs;
 
 namespace ColourTrackerRepositories
@@ -8,6 +6,7 @@ namespace ColourTrackerRepositories
     public interface IStorageRepository
     {
         List<ColourModel> GetAllColours();
+
         ColourModel AddNewColour(ColourModel colour);
     }
 }
