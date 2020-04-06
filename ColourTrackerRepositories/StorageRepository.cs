@@ -23,7 +23,9 @@ namespace ColourTrackerRepositories
 
         public ColourModel AddNewColour(ColourModel colour)
         {
-            throw new NotImplementedException();
+            _storageHelper.AddColourToStorage(colour);
+
+            return (colour);
         }
     }
 }

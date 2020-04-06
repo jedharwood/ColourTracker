@@ -1,20 +1,20 @@
-﻿[
+[
   {
     "id": 1,
     "name": "Red",
-    "brand": "Waverly",
-    "expiry": "06/22"
+    "brand": "Daler",
+    "expiry": "03/22"
   },
   {
     "id": 2,
-    "name": "Medium Blue",
-    "brand": "Solid",
-    "expiry": "04/26"
+    "name": "Golden Yellow",
+    "brand": "Windsor & Newton",
+    "expiry": "06/22"
   },
   {
     "id": 3,
-    "name": "Dragon Green",
-    "brand": "Eternal",
-    "expiry": "12/21"
+    "name": "Emerald Green",
+    "brand": "Daler",
+    "expiry": "12/26"
   }
 ]
