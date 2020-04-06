@@ -7,6 +7,6 @@ namespace ColourTrackerStorageHelper
     {
         List<ColourModel> GetColoursFromStorage();
 
-        ColourModel AddColourToStorage();
+        ColourModel AddColourToStorage(ColourModel colour);
     }
 }

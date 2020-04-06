@@ -44,13 +44,19 @@ namespace ColourTrackerApplication.Controllers
             return Json(_colours);
         }
 
-        //[Route("colours/new")]
-        //[HttpPost]
-        //public ActionResult AddColour(ColourModel colour)
-        //{
-        //    colour.Id = _colours.Count + 1;
-        //    _colours.Add(colour);
-        //    return Content("A colour has been added");
-        //}
+        [Route("colours/new")]
+        [HttpPost]
+        public ActionResult AddColour(ColourModel colour)
+        {
+            _colours = _storageRepository.GetAllColours();
+
+            colour.Id = _colours.Count + 1;
+
+            _storageRepository.AddNewColour(colour);
+
+            //_colours.Add(colour);
+
+            return Content("A colour has been added");
+        }
     }
 }
