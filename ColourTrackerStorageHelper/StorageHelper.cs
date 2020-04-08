@@ -2,6 +2,7 @@
 using System.IO;
 using ColourTrackerDTOs;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 
 namespace ColourTrackerStorageHelper
@@ -19,16 +20,34 @@ namespace ColourTrackerStorageHelper
                 string json = r.ReadToEnd();
                 List<ColourModel> colours = JsonConvert.DeserializeObject<List<ColourModel>>(json); //this code is repeated - will refactor out into separate method
 
-                colours.Add(colour);
+                JArray colourJsonArray = new JArray();
 
-                using (StreamWriter file = File.CreateText("TempStorage.json"))  //currently overwriting file with blank data. Need to fix.
+                foreach (ColourModel col in colours)
                 {
-                    JsonSerializer serializer = new JsonSerializer();
+                    JObject colourJson = new JObject(
+                        new JProperty("id", col.Id),
+                        new JProperty("name", col.Name),
+                        new JProperty("brand", col.Brand),
+                        new JProperty("expiry", col.Expiry)
+                        );
 
-                    var serializedColours = JsonConvert.SerializeObject(colours);
+                    colourJsonArray.Add(colourJson);
+                }
 
-                    //serializer.Serialize(file, colours);
-                    serializer.Serialize(file, serializedColours); 
+                JObject colourJsonNew = new JObject(
+                    new JProperty("id", colour.Id),
+                    new JProperty("name", colour.Name),
+                    new JProperty("brand", colour.Brand),
+                    new JProperty("expiry", colour.Expiry)
+                );
+
+                colourJsonArray.Add(colourJsonNew);
+
+                using (StreamWriter file = File.CreateText("TempStorage.json"))
+
+                using (JsonTextWriter writer = new JsonTextWriter(file))
+                {
+                    colourJsonArray.WriteTo(writer);
                 }
 
                 return (colour);
