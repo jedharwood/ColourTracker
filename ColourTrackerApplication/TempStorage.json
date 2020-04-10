@@ -1,1 +1,33 @@
-[{"id":1,"name":"Red","brand":"Daler","expiry":"03/22"},{"id":2,"name":"Golden Yellow","brand":"Windsor & Newton","expiry":"06/22"},{"id":3,"name":"Emerald Green","brand":"Daler","expiry":"12/26"},{"id":4,"name":"Blue","brand":"Windsor","expiry":"12/23"}]
+[
+
+  {
+    "Id": 1,
+    "Name": "Red",
+    "Brand": "Daler",
+    "Expiry": "03/22"
+  },
+  {
+    "Id": 2,
+    "Name": "Golden Yellow",
+    "Brand": "Windsor & Newton",
+    "Expiry": "06/22"
+  },
+  {
+    "Id": 3,
+    "Name": "Emerald Green",
+    "Brand": "Daler",
+    "Expiry": "12/26"
+  },
+  {
+    "Id": 4,
+    "Name": "Blue",
+    "Brand": "Windsor",
+    "Expiry": "12/23"
+  },
+  {
+    "Id": 5,
+    "Name": "Payne's Gray",
+    "Brand": "Waverly",
+    "Expiry": "04/19"
+  }
+]

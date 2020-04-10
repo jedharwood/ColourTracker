@@ -5,8 +5,8 @@ namespace ColourTrackerStorageHelper
 {
     public interface IStorageHelper
     {
-        List<ColourModel> GetColoursFromStorage();
-
         ColourModel AddColourToStorage(ColourModel colour);
+
+        List<ColourModel> GetColoursFromStorage();
     }
 }

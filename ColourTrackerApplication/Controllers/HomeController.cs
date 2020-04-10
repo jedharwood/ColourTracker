@@ -54,8 +54,6 @@ namespace ColourTrackerApplication.Controllers
 
             _storageRepository.AddNewColour(colour);
 
-            //_colours.Add(colour);
-
             return Content("A colour has been added");
         }
     }
