@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using ColourTrackerDTOs;
 using ColourTrackerRepositories;
+using System;
 
 namespace ColourTrackerApplication.Controllers
 {
@@ -37,8 +38,14 @@ namespace ColourTrackerApplication.Controllers
                     colour.Name = colourModel.Name;
                     colour.Brand = colourModel.Brand;
                     colour.Expiry = colourModel.Expiry;
-
-                    _colours.Add(colour);
+                    colour.SerialNumber = colourModel.SerialNumber;
+                    colour.DateAdded = colourModel.DateAdded;
+                    colour.DateDeleted = colourModel.DateDeleted;
+                    
+                    if (colour.DateDeleted == null) //Would like to handle this conditional rendering with the react component
+                    {
+                        _colours.Add(colour);
+                    }                 
                 }                
             }
             return Json(_colours);
@@ -52,9 +59,24 @@ namespace ColourTrackerApplication.Controllers
 
             colour.Id = _colours.Count + 1;
 
+            colour.DateAdded = DateTime.Now;
+
+            colour.DateDeleted = null;
+
             _storageRepository.AddNewColour(colour);
 
-            return Content("A colour has been added");
+            return Content("Your colour has been added");
+        }
+
+        [Route("colours/softDelete")]
+        [HttpPost]
+        public ActionResult SoftDeleteColour(ColourModel colour)
+        {
+            colour.DateDeleted = DateTime.Now;
+
+            _storageRepository.SoftDeleteColour(colour);
+
+            return Content("Your colour has been deleted");
         }
     }
 }

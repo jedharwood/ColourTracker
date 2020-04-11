@@ -26,5 +26,12 @@ namespace ColourTrackerRepositories
 
             return (colour);
         }
+
+        public ColourModel SoftDeleteColour(ColourModel colour)
+        {
+            _storageHelper.SoftDeleteColourFromStorage(colour);
+
+            return (colour);
+        }
     }
 }
