@@ -35,6 +35,13 @@ namespace ColourTrackerStorageHelper
             }
         }
 
+        public ColourModel SoftDeleteColourFromStorage(ColourModel colour)
+        {
+            //code to update json record by id number with datedeleted property
+
+            return (colour);
+        }
+
         public void SaveChanges()
         {
             using (StreamWriter file = File.CreateText("TempStorage.json"))

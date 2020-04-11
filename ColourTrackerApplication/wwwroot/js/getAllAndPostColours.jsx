@@ -18,6 +18,7 @@
         data.append('name', colour.name);
         data.append('brand', colour.brand);
         data.append('expiry', colour.expiry);
+        data.append('serialNumber', colour.serialNumber);
 
         const xhr = new XMLHttpRequest();
         xhr.open('post', this.props.submitUrl, true);
@@ -44,23 +45,52 @@
 
 class ColourList extends React.Component {
     render() {
-        const colourNodes = this.props.data.map(colour => (
+        const colourNodes = this.props.data.map(colour => (            
             <Colour name={colour.name} key={colour.id}>
-                <div>brand: {colour.brand}</div>
-                <div>exp: {colour.expiry}</div>
+                <div>Brand: {colour.brand}</div>
+                <div>Exp: {colour.expiry}</div>
+                <div>Serial #: {colour.serialNumber}</div>
+                <div>Date Added: {colour.dateAdded}</div>
+                
+                <SoftDeleteColourButton onColourDelete={this.handleColourDelete} />
+                
             </Colour>
         ));
         return <div className="colourList">{colourNodes}</div>;
     }
 }
 
+//class SoftDeleteColourButton extends React.Component {
+//    constructor(props) {
+//        super(props);
+//        this.state = { this.colour };
+//        this.handleClick = this.handleClick.bind(this);
+//    }
+//    handleClick() {
+//            const xhr = new XMLHttpRequest();
+//            xhr.open('post', this.props.softDeleteUrl, true);
+//            xhr.send(colour);
+        
+//        })
+//        this.setState({
+//            id: colour.id
+//        });
+//    }
+//    render() {
+//        return (
+//            <button onClick={() => this.handleClick}>Delete</button>
+//        );
+//    }
+//}
+
 class AddColourForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { name: '', brand: '', expiry: '' };
+        this.state = { name: '', brand: '', expiry: '', serialNumber: '' };
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleBrandChange = this.handleBrandChange.bind(this);
         this.handleExpiryChange = this.handleExpiryChange.bind(this);
+        this.handleSerialNumberChange = this.handleSerialNumberChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleNameChange(e) {
@@ -72,16 +102,30 @@ class AddColourForm extends React.Component {
     handleExpiryChange(e) {
         this.setState({ expiry: e.target.value });
     }
+    handleSerialNumberChange(e) {
+        this.setState({ serialNumber: e.target.value })
+    }
     handleSubmit(e) {
         e.preventDefault();
         const name = this.state.name.trim();
         const brand = this.state.brand.trim();
         const expiry = this.state.expiry.trim();
-        if (!name || !brand || !expiry) {
+        const serialNumber = this.state.serialNumber.trim();
+        if (!name || !brand || !expiry || !serialNumber) {
             return;
         }
-        this.props.onColourSubmit({ name: name, brand: brand, expiry: expiry })
-        this.setState({ name: '', brand: '', expiry: '' });
+        this.props.onColourSubmit({
+            name: name,
+            brand: brand,
+            expiry: expiry,
+            serialNumber: serialNumber
+        })
+        this.setState({
+            name: '',
+            brand: '',
+            expiry: '',
+            serialNumber: ''
+        });
     }
     render() {
         return (
@@ -111,6 +155,14 @@ class AddColourForm extends React.Component {
                         onChange={this.handleExpiryChange}
                     />
                 </div>
+                <div>
+                    <input
+                        type="text"
+                        placeholder="Serial #"
+                        value={this.state.serialNumber}
+                        onChange={this.handleSerialNumberChange}
+                    />
+                </div>
                 <input type="submit" value="Post" />              
             </form>           
         );
@@ -132,6 +184,9 @@ ReactDOM.render(
     <ColourDisplay
         url="/colours"
         submitUrl="/colours/new"
+
+        softDeleteUrl="/colours/softDelete"
+
         pollInterval={2000}
     />,
     document.getElementById('content')

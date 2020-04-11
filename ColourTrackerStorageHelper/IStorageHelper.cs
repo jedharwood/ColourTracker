@@ -8,5 +8,7 @@ namespace ColourTrackerStorageHelper
         ColourModel AddColourToStorage(ColourModel colour);
 
         List<ColourModel> GetColoursFromStorage();
+
+        ColourModel SoftDeleteColourFromStorage(ColourModel colour);
     }
 }
