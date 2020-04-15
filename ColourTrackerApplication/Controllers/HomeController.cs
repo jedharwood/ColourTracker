@@ -68,7 +68,7 @@ namespace ColourTrackerApplication.Controllers
             return Content("Your colour has been added");
         }
 
-        [Route("colours/softDelete")]
+        [Route("colours/softDelete/{colour.Id}")]
         [HttpPost]
         public ActionResult SoftDeleteColour(ColourModel colour)
         {
