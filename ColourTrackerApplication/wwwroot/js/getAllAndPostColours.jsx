@@ -27,16 +27,12 @@
     }
     componentDidMount() {
         this.loadColoursFromServer();
-        window.setInterval(
-            () => this.loadColoursFromServer(),
-            this.props.pollInterval,
-        );
     }
     render() {
         return (
             <div className="colourDisplay">
                 <h1>Colours</h1>
-                <ColourList data={this.state.data}/>
+                <ColourList data={this.state.data} softDeleteUrl={this.props.softDeleteUrl} />
                 <AddColourForm onColourSubmit={this.handleColourSubmit}/>
             </div>
         );
@@ -51,37 +47,38 @@ class ColourList extends React.Component {
                 <div>Exp: {colour.expiry}</div>
                 <div>Serial #: {colour.serialNumber}</div>
                 <div>Date Added: {colour.dateAdded}</div>
-                
-                <SoftDeleteColourButton onColourDelete={this.handleColourDelete} />
-                
+                <SoftDeleteColour colour={colour} softDeleteUrl={this.props.softDeleteUrl}/>
             </Colour>
         ));
         return <div className="colourList">{colourNodes}</div>;
     }
 }
 
-//class SoftDeleteColourButton extends React.Component {
-//    constructor(props) {
-//        super(props);
-//        this.state = { this.colour };
-//        this.handleClick = this.handleClick.bind(this);
-//    }
-//    handleClick() {
-//            const xhr = new XMLHttpRequest();
-//            xhr.open('post', this.props.softDeleteUrl, true);
-//            xhr.send(colour);
-        
-//        })
-//        this.setState({
-//            id: colour.id
-//        });
-//    }
-//    render() {
-//        return (
-//            <button onClick={() => this.handleClick}>Delete</button>
-//        );
-//    }
-//}
+class SoftDeleteColour extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            colour: this.props.colour
+        };
+    }
+    HandleDeletion(colour) {
+        var xhr = new XMLHttpRequest();
+        var url = this.props.softDeleteUrl + colour.id;
+        xhr.open('Post', url, true);
+
+        xhr.onreadystatechange = () => {
+            if (xhr.status == 204) {
+                this.loadColoursFromServer();
+            }
+        }
+        xhr.send();
+    }
+    render() {
+        return (         
+            <button onClick={() => { this.HandleDeletion(this.state.colour); }}>Delete</button>              
+        )
+    }
+}
 
 class AddColourForm extends React.Component {
     constructor(props) {
@@ -174,7 +171,7 @@ class Colour extends React.Component {
         return (
             <div className="colour">
                 <h2 className="colourName">{this.props.name}</h2>
-                {this.props.children}               
+                {this.props.children}
             </div>
         );
     }
@@ -184,10 +181,7 @@ ReactDOM.render(
     <ColourDisplay
         url="/colours"
         submitUrl="/colours/new"
-
-        softDeleteUrl="/colours/softDelete"
-
-        pollInterval={2000}
+        softDeleteUrl="/colours/softDelete/"
     />,
     document.getElementById('content')
 );
