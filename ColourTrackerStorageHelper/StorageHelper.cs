@@ -37,7 +37,15 @@ namespace ColourTrackerStorageHelper
 
         public ColourModel SoftDeleteColourFromStorage(ColourModel colour)
         {
-            //code to update json record by id number with datedeleted property
+            foreach (var colourModel in Colours)
+            {
+                if (colourModel.Id == colour.Id)
+                {
+                    colourModel.DateDeleted = colour.DateDeleted;
+                }               
+            }
+
+            SaveChanges();
 
             return (colour);
         }

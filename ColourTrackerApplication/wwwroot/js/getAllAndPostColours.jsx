@@ -27,6 +27,10 @@
     }
     componentDidMount() {
         this.loadColoursFromServer();
+        window.setInterval(
+            () => this.loadColoursFromServer(),
+            this.props.pollInterval,
+        );
     }
     render() {
         return (
@@ -75,7 +79,7 @@ class SoftDeleteColour extends React.Component {
     }
     render() {
         return (         
-            <button onClick={() => { this.HandleDeletion(this.state.colour); }}>Delete</button>              
+            <button className="actionButton" onClick={() => { this.HandleDeletion(this.state.colour); }}>Delete</button>              
         )
     }
 }
@@ -127,7 +131,7 @@ class AddColourForm extends React.Component {
     render() {
         return (
             <form className="addColourForm" onSubmit={this.handleSubmit}>
-                <h2>Add a colour to your list</h2>
+                <h1>Add a colour to your list</h1>
                 <div>
                     <input
                         type="text"
@@ -160,7 +164,7 @@ class AddColourForm extends React.Component {
                         onChange={this.handleSerialNumberChange}
                     />
                 </div>
-                <input type="submit" value="Post" />              
+                <input type="submit" value="Post" className="actionButton" />              
             </form>           
         );
     }
@@ -182,6 +186,7 @@ ReactDOM.render(
         url="/colours"
         submitUrl="/colours/new"
         softDeleteUrl="/colours/softDelete/"
+        pollInterval={2000}
     />,
     document.getElementById('content')
 );
