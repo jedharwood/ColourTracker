@@ -79,5 +79,23 @@ namespace ColourTrackerApplication.Controllers
 
             return Content("Your colour has been deleted");
         }
+
+        [Route("colours/populateEditForm")]
+        [HttpPost]
+        public ActionResult Edit(ColourModel colour)
+        {
+            return View(colour);
+        }
+
+        [Route("colours/submitEdit")]
+        [HttpPost]
+        public ActionResult UpdateColour(ColourModel colour)
+        {
+            colour.DateModified = DateTime.Now;
+
+            _storageRepository.UpdateColour(colour);
+
+            return Content("Your colour has been updated");
+        }
     }
 }

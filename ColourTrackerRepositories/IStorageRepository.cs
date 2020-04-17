@@ -10,5 +10,7 @@ namespace ColourTrackerRepositories
         ColourModel AddNewColour(ColourModel colour);
 
         ColourModel SoftDeleteColour(ColourModel colour);
+
+        ColourModel UpdateColour(ColourModel colour);
     }
 }
