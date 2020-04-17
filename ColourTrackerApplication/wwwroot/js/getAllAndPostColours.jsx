@@ -36,7 +36,11 @@
         return (
             <div className="colourDisplay">
                 <h1>Colours</h1>
-                <ColourList data={this.state.data} softDeleteUrl={this.props.softDeleteUrl} />
+                <ColourList
+                    data={this.state.data}
+                    softDeleteUrl={this.props.softDeleteUrl}
+                    populateEditFormUrl={this.props.populateEditFormUrl}
+                />
                 <AddColourForm onColourSubmit={this.handleColourSubmit}/>
             </div>
         );
@@ -51,7 +55,8 @@ class ColourList extends React.Component {
                 <div>Exp: {colour.expiry}</div>
                 <div>Serial #: {colour.serialNumber}</div>
                 <div>Date Added: {colour.dateAdded}</div>
-                <SoftDeleteColour colour={colour} softDeleteUrl={this.props.softDeleteUrl}/>
+                <SoftDeleteColour colour={colour} softDeleteUrl={this.props.softDeleteUrl} />
+                <EditColourButton colour={colour} populateEditFormUrl={this.props.populateEditFormUrl} />
             </Colour>
         ));
         return <div className="colourList">{colourNodes}</div>;
@@ -80,6 +85,33 @@ class SoftDeleteColour extends React.Component {
     render() {
         return (         
             <button className="actionButton" onClick={() => { this.HandleDeletion(this.state.colour); }}>Delete</button>              
+        )
+    }
+}
+
+class EditColourButton extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            colour: this.props.colour
+        };
+    }
+    HandleEditSubmission(colour) {
+        var xhr = new XMLHttpRequest();
+        var url = this.props.populateEditFormUrl;
+        xhr.open('Post', url, true);
+
+        //xhr.onreadystatechange = () => {
+        //    if (xhr.status == 204) {
+        //        this.loadColoursFromServer();
+        //    }
+        //}
+
+        xhr.send(colour);
+    }
+    render() {
+        return (
+            <button className="actionButton" onClick={() => { this.HandleEditSubmission(this.state.colour); }}>Edit</button>
         )
     }
 }
@@ -186,6 +218,7 @@ ReactDOM.render(
         url="/colours"
         submitUrl="/colours/new"
         softDeleteUrl="/colours/softDelete/"
+        populateEditFormUrl="/colours/populateEditForm"
         pollInterval={2000}
     />,
     document.getElementById('content')

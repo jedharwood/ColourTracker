@@ -33,5 +33,12 @@ namespace ColourTrackerRepositories
 
             return (colour);
         }
+
+        public ColourModel UpdateColour(ColourModel colour)
+        {
+            _storageHelper.UpdateColourInStorage(colour);
+
+            return (colour);
+        }
     }
 }

@@ -17,5 +17,7 @@ namespace ColourTrackerDTOs
         public DateTime DateAdded { get; set; }
 
         public DateTime? DateDeleted { get; set; }
+
+        public DateTime? DateModified { get; set; }
     }
 }

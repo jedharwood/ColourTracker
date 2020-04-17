@@ -50,6 +50,25 @@ namespace ColourTrackerStorageHelper
             return (colour);
         }
 
+        public ColourModel UpdateColourInStorage(ColourModel colour)
+        {
+            foreach (var colourModel in Colours)
+            {
+                if (colourModel.Id == colour.Id)
+                {
+                    colourModel.Name = colour.Name;
+                    colourModel.Brand = colour.Brand;
+                    colourModel.Expiry = colour.Expiry;
+                    colourModel.SerialNumber = colour.SerialNumber;
+                    colourModel.DateModified = colour.DateModified;
+                }
+            }
+
+            SaveChanges();
+
+            return (colour);
+        }
+
         public void SaveChanges()
         {
             using (StreamWriter file = File.CreateText("TempStorage.json"))
