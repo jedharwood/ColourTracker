@@ -97,9 +97,14 @@ class EditColourButton extends React.Component {
         };
     }
     HandleEditSubmission(colour) {
+        const data = new FormData();
+        data.append('name', colour.name);
+        data.append('brand', colour.brand);
+        data.append('expiry', colour.expiry);
+        data.append('serialNumber', colour.serialNumber);
+
         var xhr = new XMLHttpRequest();
-        var url = this.props.populateEditFormUrl;
-        xhr.open('Post', url, true);
+        xhr.open('Post', this.props.populateEditFormUrl, true);
 
         //xhr.onreadystatechange = () => {
         //    if (xhr.status == 204) {
@@ -107,7 +112,7 @@ class EditColourButton extends React.Component {
         //    }
         //}
 
-        xhr.send(colour);
+        xhr.send(data);
     }
     render() {
         return (
