@@ -4,6 +4,7 @@ using ColourTrackerDTOs;
 using ColourTrackerRepositories;
 using System;
 using System.Net;
+using Newtonsoft.Json.Linq;
 
 namespace ColourTrackerApplication.Controllers
 {
@@ -26,7 +27,7 @@ namespace ColourTrackerApplication.Controllers
         [Route("colours")]
         [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
         public ActionResult GetAllColours()
-        {          
+        {
             var colourModels = _storageRepository.GetAllColours();
 
             _colours = new List<ColourModel>();
@@ -42,12 +43,12 @@ namespace ColourTrackerApplication.Controllers
                     colour.SerialNumber = colourModel.SerialNumber;
                     colour.DateAdded = colourModel.DateAdded;
                     colour.DateDeleted = colourModel.DateDeleted;
-                    
+
                     if (colour.DateDeleted == null) //Would like to handle this conditional rendering with the react component
                     {
                         _colours.Add(colour);
-                    }                 
-                }                
+                    }
+                }
             }
             return Json(_colours);
         }
@@ -82,7 +83,7 @@ namespace ColourTrackerApplication.Controllers
 
         [Route("colours/populateEditForm")]
         [HttpPost]
-        public ActionResult Edit(ColourModel colour)
+        public ActionResult Edit([FromBody] ColourModel colour)
         {
             return View(colour);
         }
