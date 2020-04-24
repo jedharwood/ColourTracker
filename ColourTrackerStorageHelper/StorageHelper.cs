@@ -2,16 +2,24 @@
 using System.IO;
 using ColourTrackerDTOs;
 using Newtonsoft.Json;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+
 
 namespace ColourTrackerStorageHelper
 {
-    public class StorageHelper : IStorageHelper
+    public class StorageHelper : IStorageHelper 
     {
+        private IConfiguration _configuration;
         public List<ColourModel> Colours { get; set; }
+        private readonly ILogger<StorageHelper> _logger;
 
-        public StorageHelper()
+        public StorageHelper(IConfiguration configuration, ILogger<StorageHelper> logger)
         {
-            using (StreamReader streamReader = new StreamReader("TempStorage.json"))
+            _logger = logger;
+            _configuration = configuration;
+
+            using (StreamReader streamReader = new StreamReader(_configuration["Storage:Location"]))
             {
                 string jsonContent = streamReader.ReadToEnd();
                 Colours = JsonConvert.DeserializeObject<List<ColourModel>>(jsonContent);
@@ -20,6 +28,8 @@ namespace ColourTrackerStorageHelper
 
         public ColourModel AddColourToStorage(ColourModel colour)
         {
+            _logger.LogInformation($"Adding [Colour: {colour.Brand}, {colour.Name}] to storage");
+
             Colours.Add(colour);
 
             SaveChanges();
@@ -29,7 +39,9 @@ namespace ColourTrackerStorageHelper
 
         public List<ColourModel> GetColoursFromStorage()
         {
-            using (StreamReader r = new StreamReader("TempStorage.json"))
+            _logger.LogInformation("Getting all colours from storage");
+
+            using (StreamReader r = new StreamReader(_configuration["Storage:Location"]))
             {
                 return (Colours);
             }
@@ -41,6 +53,8 @@ namespace ColourTrackerStorageHelper
             {
                 if (colourModel.Id == colour.Id)
                 {
+                    _logger.LogInformation($"Soft Deleting [Colour: {colour.Id}] from storage");
+
                     colourModel.DateDeleted = colour.DateDeleted;
                 }               
             }
@@ -56,6 +70,8 @@ namespace ColourTrackerStorageHelper
             {
                 if (colourModel.Id == colour.Id)
                 {
+                    _logger.LogInformation($"Updating record for [Colour: {colour.Id}]");
+
                     colourModel.Name = colour.Name;
                     colourModel.Brand = colour.Brand;
                     colourModel.Expiry = colour.Expiry;
@@ -71,8 +87,10 @@ namespace ColourTrackerStorageHelper
 
         public void SaveChanges()
         {
-            using (StreamWriter file = File.CreateText("TempStorage.json"))
+            using (StreamWriter file = File.CreateText(_configuration["Storage:Location"]))
             {
+                _logger.LogInformation("Saving changes");
+
                 JsonSerializer jsonSerializer = new JsonSerializer();
                 jsonSerializer.Serialize(file, Colours);
             }

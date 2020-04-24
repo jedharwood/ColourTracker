@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using ColourTrackerDTOs;
 using ColourTrackerRepositories;
 using System;
-using System.Net;
-using Newtonsoft.Json.Linq;
+using Microsoft.Extensions.Logging;
 
 namespace ColourTrackerApplication.Controllers
 {
@@ -12,15 +11,19 @@ namespace ColourTrackerApplication.Controllers
     {
         private IList<ColourModel> _colours;
         private readonly IStorageRepository _storageRepository;
+        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(IStorageRepository storageRepository)
+        public HomeController(IStorageRepository storageRepository, ILogger<HomeController> logger)
         {
             _storageRepository = storageRepository;
+            _logger = logger;
         }
 
         // GET: /<controller>/
         public IActionResult Index()
         {
+            _logger.LogInformation("Loading Home/Index");
+
             return View();
         }
 
@@ -28,6 +31,8 @@ namespace ColourTrackerApplication.Controllers
         [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
         public ActionResult GetAllColours()
         {
+            _logger.LogInformation("Getting all colours from storage via StorageRepository");
+
             var colourModels = _storageRepository.GetAllColours();
 
             _colours = new List<ColourModel>();
@@ -65,6 +70,8 @@ namespace ColourTrackerApplication.Controllers
 
             colour.DateDeleted = null;
 
+            _logger.LogInformation($"Adding [Colour: {colour.Brand}, {colour.Name}] to storage via StorageRepository");
+
             _storageRepository.AddNewColour(colour);
 
             return Content("Your colour has been added");
@@ -76,6 +83,8 @@ namespace ColourTrackerApplication.Controllers
         {
             colour.DateDeleted = DateTime.Now;
 
+            _logger.LogInformation($"Soft Deleting [Colour: {colour.Id}] from storage via StorageRepository");
+
             _storageRepository.SoftDeleteColour(colour);
 
             return Content("Your colour has been deleted");
@@ -85,6 +94,8 @@ namespace ColourTrackerApplication.Controllers
         [HttpPost]
         public ActionResult Edit([FromBody] ColourModel colour)
         {
+            _logger.LogInformation($"Receiving parameters for [Colour: {colour.Id}] from view to populate Edit Form");
+
             return View(colour);
         }
 
@@ -93,6 +104,8 @@ namespace ColourTrackerApplication.Controllers
         public ActionResult UpdateColour(ColourModel colour)
         {
             colour.DateModified = DateTime.Now;
+
+            _logger.LogInformation($"Updating record for [Colour: {colour.Id}] via StorageRepository");
 
             _storageRepository.UpdateColour(colour);
 

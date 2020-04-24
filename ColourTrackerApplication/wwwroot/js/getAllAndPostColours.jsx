@@ -27,11 +27,14 @@
     }
     componentDidMount() {
         this.loadColoursFromServer();
-        window.setInterval(
-            () => this.loadColoursFromServer(),
-            this.props.pollInterval,
-        );
+
+        //window.setInterval(
+        //    () => this.loadColoursFromServer(),
+        //    this.props.pollInterval,
+        //);
+
     }
+
     render() {
         return (
             <div className="colourDisplay">
@@ -80,6 +83,10 @@ class SoftDeleteColour extends React.Component {
                 this.loadColoursFromServer();
             }
         }
+
+        //xhr.onload = () => this.props.loadColoursFromServer();
+
+
         xhr.send();
     }
     render() {
@@ -224,7 +231,9 @@ ReactDOM.render(
         submitUrl="/colours/new"
         softDeleteUrl="/colours/softDelete/"
         populateEditFormUrl="/colours/populateEditForm"
-        pollInterval={2000}
+
+        //pollInterval={2000}
+
     />,
     document.getElementById('content')
 );

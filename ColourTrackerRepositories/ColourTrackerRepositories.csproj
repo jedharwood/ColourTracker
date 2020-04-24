@@ -8,4 +8,7 @@
     <ProjectReference Include="..\ColourTrackerDTOs\ColourTrackerDTOs.csproj" />
     <ProjectReference Include="..\ColourTrackerStorageHelper\ColourTrackerStorageHelper.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
+  </ItemGroup>
 </Project>

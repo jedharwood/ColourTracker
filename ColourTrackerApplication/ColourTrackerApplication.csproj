@@ -21,6 +21,7 @@
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.osx-x64" Version="3.4.5" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore" Version="3.4.5" />
     <PackageReference Include="JavaScriptEngineSwitcher.Extensions.MsDependencyInjection" Version="3.3.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ColourTrackerDTOs\ColourTrackerDTOs.csproj">

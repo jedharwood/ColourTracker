@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using React.AspNet;
+using Serilog;
 
 namespace ColourTrackerApplication
 {
@@ -55,6 +56,8 @@ namespace ColourTrackerApplication
             {});
 
             app.UseStaticFiles();
+
+            app.UseSerilogRequestLogging();
 
             app.UseRouting();
 
