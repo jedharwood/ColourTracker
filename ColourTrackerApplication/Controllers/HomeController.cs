@@ -92,11 +92,11 @@ namespace ColourTrackerApplication.Controllers
 
         [Route("colours/populateEditForm")]
         [HttpPost]
-        public ActionResult Edit([FromBody] ColourModel colour)
+        public ActionResult Edit([FromForm] ColourModel colour)
         {
             _logger.LogInformation($"Receiving parameters for [Colour: {colour.Id}] from view to populate Edit Form");
 
-            return View(colour);
+            return View("Edit", colour);
         }
 
         [Route("colours/submitEdit")]

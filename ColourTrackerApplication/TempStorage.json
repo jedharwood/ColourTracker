@@ -1,1 +1,52 @@
-[{"Id":1,"Name":"Red","Brand":"Daler","Expiry":"03/22","SerialNumber":null,"DateAdded":"0001-01-01T00:00:00","DateDeleted":"2020-04-24T15:44:53.785806+01:00","DateModified":null},{"Id":2,"Name":"Golden Yellow","Brand":"Windsor & Newton","Expiry":"06/22","SerialNumber":null,"DateAdded":"0001-01-01T00:00:00","DateDeleted":"2020-04-24T15:46:50.844887+01:00","DateModified":null},{"Id":3,"Name":"Emerald Green","Brand":"Daler","Expiry":"12/26","SerialNumber":null,"DateAdded":"0001-01-01T00:00:00","DateDeleted":"2020-04-24T15:52:05.670115+01:00","DateModified":null},{"Id":4,"Name":"Blue","Brand":"Windsor","Expiry":"12/23","SerialNumber":null,"DateAdded":"0001-01-01T00:00:00","DateDeleted":null,"DateModified":null},{"Id":5,"Name":"Payne's Gray","Brand":"Waverly","Expiry":"04/19","SerialNumber":null,"DateAdded":"0001-01-01T00:00:00","DateDeleted":null,"DateModified":null}]
+[
+  {
+    "Id": 1,
+    "Name": "Red",
+    "Brand": "Daler",
+    "Expiry": "03/22",
+    "SerialNumber": null,
+    "DateAdded": "0001-01-01T00:00:00",
+    "DateDeleted": null,
+    "DateModified": null
+  },
+  {
+    "Id": 2,
+    "Name": "Golden Yellow",
+    "Brand": "Windsor & Newton",
+    "Expiry": "06/22",
+    "SerialNumber": null,
+    "DateAdded": "0001-01-01T00:00:00",
+    "DateDeleted": null,
+    "DateModified": null
+  },
+  {
+    "Id": 3,
+    "Name": "Emerald Green",
+    "Brand": "Daler",
+    "Expiry": "12/26",
+    "SerialNumber": null,
+    "DateAdded": "0001-01-01T00:00:00",
+    "DateDeleted": null,
+    "DateModified": null
+  },
+  {
+    "Id": 4,
+    "Name": "Blue",
+    "Brand": "Windsor",
+    "Expiry": "12/23",
+    "SerialNumber": null,
+    "DateAdded": "0001-01-01T00:00:00",
+    "DateDeleted": null,
+    "DateModified": null
+  },
+  {
+    "Id": 5,
+    "Name": "Payne's Gray",
+    "Brand": "Waverly",
+    "Expiry": "04/19",
+    "SerialNumber": null,
+    "DateAdded": "0001-01-01T00:00:00",
+    "DateDeleted": null,
+    "DateModified": null
+  }
+]
