@@ -78,11 +78,11 @@ class SoftDeleteColour extends React.Component {
         var url = this.props.softDeleteUrl + colour.id;
         xhr.open('Post', url, true);
 
-        xhr.onreadystatechange = () => {
-            if (xhr.status == 204) {
-                this.loadColoursFromServer();
-            }
-        }
+        //xhr.onreadystatechange = () => {
+        //    if (xhr.status == 204) {
+        //        this.loadColoursFromServer();
+        //    }
+        //}
 
         //xhr.onload = () => this.props.loadColoursFromServer();
 
