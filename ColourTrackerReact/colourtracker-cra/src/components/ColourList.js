@@ -20,7 +20,7 @@ function ColourList(props) {
                 <Link to={"/colour/" + colour.id}>{colour.colourName}</Link>
               </td>
               <td>{colour.authorId}</td>
-              <td>{colour.category}</td>
+              <td>{colour.colourFamily}</td>
             </tr>
           );
         })}
@@ -35,7 +35,7 @@ ColourList.propTypes = {
       id: PropTypes.number.isRequired,
       colourName: PropTypes.string.isRequired,
       authorId: PropTypes.number.isRequired,
-      category: PropTypes.string.isRequired,
+      colourFamily: PropTypes.string.isRequired,
     })
   ).isRequired,
 };

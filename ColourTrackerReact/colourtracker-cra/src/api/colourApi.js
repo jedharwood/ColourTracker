@@ -31,32 +31,6 @@ export function saveColour(colour) {
     .catch(handleError);
 }
 
-// export function updateColour(colour) {
-//   return fetch(baseUrl + colour.id, {
-//     method: "PUT",
-//     headers: { "content-type": "application/json" },
-//     body: JSON.stringify({
-//       ...colour,
-//       authorId: parseInt(colour.authorId, 10),
-//     }),
-//   })
-//     .then(handleResponse)
-//     .catch(handleError);
-// }
-
-// export function saveNewColour(colour) {
-//   return fetch(baseUrl, {
-//     method: "POST",
-//     headers: { "content-type": "application/json" },
-//     body: JSON.stringify({
-//       ...colour,
-//       authorId: parseInt(colour.authorId, 10),
-//     }),
-//   })
-//     .then(handleResponse)
-//     .catch(handleError);
-// }
-
 export function deleteColour(colourId) {
   return fetch(baseUrl + colourId, { method: "DELETE" })
     .then(handleResponse)

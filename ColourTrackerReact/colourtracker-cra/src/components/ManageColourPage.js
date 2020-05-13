@@ -9,7 +9,7 @@ const ManageColourPage = (props) => {
     id: null,
     colourName: "",
     authorId: null,
-    category: "",
+    colourFamily: "",
   });
 
   useEffect(() => {
@@ -32,7 +32,8 @@ const ManageColourPage = (props) => {
 
     if (!colour.colourName) _errors.colourName = "Colour Name is required";
     if (!colour.authorId) _errors.authorId = "Author ID is required";
-    if (!colour.category) _errors.category = "Category is required";
+    if (!colour.colourFamily)
+      _errors.colourFamily = "Colour Family is required";
 
     setErrors(_errors);
 

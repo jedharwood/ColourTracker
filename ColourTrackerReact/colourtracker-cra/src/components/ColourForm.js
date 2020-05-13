@@ -36,12 +36,12 @@ function ColourForm(props) {
       </div>
 
       <TextInput
-        id="category"
+        id="colourFamily"
         label="Colour Family"
-        name="category"
+        name="colourFamily"
         onChange={props.onChange}
-        value={props.colour.category}
-        error={props.errors.category}
+        value={props.colour.colourFamily}
+        error={props.errors.colourFamily}
       />
 
       <input type="submit" value="Save" className="btn btn-primary" />
