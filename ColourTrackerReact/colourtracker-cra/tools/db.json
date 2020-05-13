@@ -71,6 +71,12 @@
       "colourName": "Added",
       "brandId": 2,
       "colourFamily": "Colour"
+    },
+    {
+      "id": 13,
+      "colourName": "dbfdfb",
+      "brandId": 1,
+      "colourFamily": "dfbdfb"
     }
   ],
   "brands": [

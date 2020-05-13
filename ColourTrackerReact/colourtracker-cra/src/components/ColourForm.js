@@ -1,5 +1,6 @@
 import React from "react";
 import TextInput from "./common/TextInput";
+import SelectInput from "./common/SelectInput";
 import PropTypes from "prop-types";
 
 function ColourForm(props) {
@@ -14,26 +15,32 @@ function ColourForm(props) {
         error={props.errors.colourName}
       />
 
-      <div className="form-group">
-        <label htmlFor="brand">Brand</label>
-        <div className="field">
-          <select
-            id="brand"
-            name="brandId"
-            onChange={props.onChange}
-            className="form-control"
-            value={props.colour.brandId || ""}
-          >
-            <option value="" />
-            <option value={"1"}>Waverly</option>
-            <option value="2">Old Gold</option>
-            <option value="3">Castle Pigment</option>
-          </select>
-        </div>
-        {props.errors.brandId && (
-          <div className="alert alert-danger">{props.errors.brandId}</div>
-        )}
-      </div>
+      <SelectInput
+        id="brand"
+        label="Brand"
+        onChange={props.onChange}
+        name="brandId"
+        error={props.errors.brandId}
+        value={props.colour.brandId}
+        values={[
+          {
+            id: 1,
+            name: "Waverly",
+          },
+          {
+            id: 2,
+            name: "Old Gold",
+          },
+          {
+            id: 3,
+            name: "Castle Pigment",
+          },
+          {
+            id: 4,
+            name: "Solid",
+          },
+        ]}
+      />
 
       <TextInput
         id="colourFamily"
