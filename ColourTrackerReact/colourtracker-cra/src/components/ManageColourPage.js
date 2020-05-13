@@ -8,7 +8,7 @@ const ManageColourPage = (props) => {
   const [colour, setColour] = useState({
     id: null,
     colourName: "",
-    authorId: null,
+    brandId: null,
     colourFamily: "",
   });
 
@@ -31,7 +31,7 @@ const ManageColourPage = (props) => {
     const _errors = {};
 
     if (!colour.colourName) _errors.colourName = "Colour Name is required";
-    if (!colour.authorId) _errors.authorId = "Author ID is required";
+    if (!colour.brandId) _errors.brandId = "Brand ID is required";
     if (!colour.colourFamily)
       _errors.colourFamily = "Colour Family is required";
 
@@ -49,9 +49,25 @@ const ManageColourPage = (props) => {
     });
   }
 
+  function EditColourLegend() {
+    return <h2>Edit Colour</h2>;
+  }
+
+  function AddColourLegend() {
+    return <h2>Add Colour</h2>;
+  }
+
+  function PageLegend(props) {
+    if (props.colour.id === null) {
+      return <AddColourLegend />;
+    } else {
+      return <EditColourLegend />;
+    }
+  }
+
   return (
     <>
-      <h2>Add/Edit Colour</h2>
+      <PageLegend colour={colour} />
       <ColourForm
         errors={errors}
         colour={colour}

@@ -23,8 +23,8 @@ export function saveColour(colour) {
     headers: { "content-type": "application/json" },
     body: JSON.stringify({
       ...colour,
-      // Parse authorId to a number (in case it was sent as a string).
-      authorId: parseInt(colour.authorId, 10),
+      // Parse brandId to a number (in case it was sent as a string).
+      brandId: parseInt(colour.brandId, 10),
     }),
   })
     .then(handleResponse)

@@ -15,14 +15,14 @@ function ColourForm(props) {
       />
 
       <div className="form-group">
-        <label htmlFor="author">Brand</label>
+        <label htmlFor="brand">Brand</label>
         <div className="field">
           <select
-            id="author"
-            name="authorId"
+            id="brand"
+            name="brandId"
             onChange={props.onChange}
             className="form-control"
-            value={props.colour.authorId || ""}
+            value={props.colour.brandId || ""}
           >
             <option value="" />
             <option value={"1"}>Waverly</option>
@@ -30,8 +30,8 @@ function ColourForm(props) {
             <option value="3">Castle Pigment</option>
           </select>
         </div>
-        {props.errors.authorId && (
-          <div className="alert alert-danger">{props.errors.authorId}</div>
+        {props.errors.brandId && (
+          <div className="alert alert-danger">{props.errors.brandId}</div>
         )}
       </div>
 
