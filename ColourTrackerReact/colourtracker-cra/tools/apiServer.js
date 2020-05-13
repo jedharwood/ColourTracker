@@ -35,17 +35,12 @@ server.use(function (req, res, next) {
 
 // Declaring custom routes below. Add custom routes before JSON Server router
 
-// Add createdAt to all POSTS
-server.use((req, res, next) => {
-  // Continue to JSON Server router
-  next();
-});
-
 server.post("/colours/", function (req, res, next) {
   const error = validateColour(req.body);
   if (error) {
     res.status(400).send(error);
   }
+  next();
 });
 
 // Use default router
