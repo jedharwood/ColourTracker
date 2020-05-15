@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { getBrands } from "../api/brandApi";
+import { getColourFamilies } from "../api/colourFamilyApi";
 import TextInput from "./common/TextInput";
 import SelectInput from "./common/SelectInput";
 import PropTypes from "prop-types";
 
 function ColourForm(props) {
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    getBrands().then((_brands) => setBrands(_brands));
+  }, []);
+
+  const [colourFamilies, setColourFamilies] = useState([]);
+
+  useEffect(() => {
+    getColourFamilies().then((_colourFamilies) =>
+      setColourFamilies(_colourFamilies)
+    );
+  }, []);
+
   return (
     <form onSubmit={props.onSubmit}>
       <TextInput
@@ -22,33 +38,35 @@ function ColourForm(props) {
         name="brandId"
         error={props.errors.brandId}
         value={props.colour.brandId}
-        values={[
-          {
-            id: 1,
-            name: "Waverly",
-          },
-          {
-            id: 2,
-            name: "Old Gold",
-          },
-          {
-            id: 3,
-            name: "Castle Pigment",
-          },
-          {
-            id: 4,
-            name: "Solid",
-          },
-        ]}
+        values={brands}
+      />
+
+      <SelectInput
+        id="colourFamily"
+        label="Colour Family"
+        onChange={props.onChange}
+        name="colourFamily"
+        error={props.errors.colourFamily}
+        value={props.colour.colourFamily}
+        values={colourFamilies}
       />
 
       <TextInput
-        id="colourFamily"
-        label="Colour Family"
-        name="colourFamily"
+        id="serialNumber"
+        label="Serial #"
         onChange={props.onChange}
-        value={props.colour.colourFamily}
-        error={props.errors.colourFamily}
+        name="serialNumber"
+        value={props.colour.serialNumber}
+        error={props.errors.serialNumber}
+      />
+
+      <TextInput
+        id="expiry"
+        label="Expiry"
+        onChange={props.onChange}
+        name="expiry"
+        value={props.colour.expiry}
+        error={props.errors.expiry}
       />
 
       <input type="submit" value="Save" className="btn btn-primary" />

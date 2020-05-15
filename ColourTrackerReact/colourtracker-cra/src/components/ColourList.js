@@ -10,6 +10,8 @@ function ColourList(props) {
           <th>Name</th>
           <th>Brand Id</th>
           <th>Colour Family</th>
+          <th>Serial #</th>
+          <th>Expiry</th>
         </tr>
       </thead>
       <tbody>
@@ -21,6 +23,8 @@ function ColourList(props) {
               </td>
               <td>{colour.brandId}</td>
               <td>{colour.colourFamily}</td>
+              <td>{colour.serialNumber}</td>
+              <td>{colour.expiry}</td>
             </tr>
           );
         })}
@@ -34,8 +38,10 @@ ColourList.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       colourName: PropTypes.string.isRequired,
-      brandId: PropTypes.number.isRequired,
-      colourFamily: PropTypes.string.isRequired,
+      brandId: PropTypes.number,
+      colourFamily: PropTypes.number,
+      expiry: PropTypes.string,
+      serialNumber: PropTypes.string,
     })
   ).isRequired,
 };

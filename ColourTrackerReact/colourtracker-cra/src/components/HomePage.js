@@ -5,7 +5,10 @@ function HomePage() {
   return (
     <div className="jumbotron">
       <h1>Colour Tracker</h1>
-      <p>React, Flux and React Router for ultra-responsive web apps.</p>
+      <p>
+        A CRUD app to track pigment expiry dates using a ReactJs front end and
+        an ASP.NET MVC back end. Fun, eh?
+      </p>
       <Link to="/about" className="btn btn-primary">
         About
       </Link>
