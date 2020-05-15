@@ -31,9 +31,6 @@ const ManageColourPage = (props) => {
     const _errors = {};
 
     if (!colour.colourName) _errors.colourName = "Colour Name is required";
-    if (!colour.brandId) _errors.brandId = "Brand ID is required";
-    if (!colour.colourFamily)
-      _errors.colourFamily = "Colour Family is required";
 
     setErrors(_errors);
 
