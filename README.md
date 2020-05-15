@@ -1,5 +1,13 @@
 # ColourTracker
 .Net Core CRUD app with React front end
-I'm creating this app to try and showcase how far my development skills have progressed since I started working as a Junior Developer in August 2019. I'm beginning with an MVC app that can display and manage a collection of colours through a ReactJs front end. I'll initially be wiring my storage handler to read from and write to a json file in the solution while I get the basic react components working. Once these are in place I will be moving the storage out to Azure Blob storage or MongoDb or something. Once this functionality is in place I will look to style the front end with Bootstrap + CSS (my preference is for LESS but I'm working on a mac from home and the WebCompiler for Visual Studio doesn't apear to work on OSX), add in ReactRouter and a host of other planned improvements.
+I'm creating this app to try and showcase how far my development skills have progressed since I started working as a Junior Developer in August 2019. This project started out as an MVC app that can display and manage a collection of colours through a ReactJs.Net front end. I am now in the process of replacing the .jsx file in the .net core project with a standalond react front end. 
+I've initially wired my storage handler to read from and write to a json file in the solution while I hook up the React App. Once this is working I will be moving the storage out to Azure Blob storage or MongoDb or something. 
+I will look to style the front end with Bootstrap + CSS/Less.
+Next stages;
+Hook-up react app to .net core project
+Implement REST functions
+Style front end with Less
+Exception handling in .net core project
+Automated testing
 Feedback encouraged and welcomed.
 Jed
