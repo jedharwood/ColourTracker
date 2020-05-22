@@ -1,3 +1,4 @@
+using ColourTrackerHelperLibraries;
 using ColourTrackerRepositories;
 using ColourTrackerStorageHelper;
 using JavaScriptEngineSwitcher.ChakraCore;
@@ -29,6 +30,8 @@ namespace ColourTrackerApplication
             services.AddTransient<IStorageRepository, StorageRepository>();
 
             services.AddTransient<IStorageHelper, StorageHelper>();
+
+            services.AddTransient<IApplicationHelperLibrary, ApplicationHelperLibrary>();
 
             services.AddReact();
 

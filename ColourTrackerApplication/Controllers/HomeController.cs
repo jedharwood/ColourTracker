@@ -4,6 +4,7 @@ using ColourTrackerDTOs;
 using ColourTrackerRepositories;
 using System;
 using Microsoft.Extensions.Logging;
+using ColourTrackerHelperLibraries;
 
 namespace ColourTrackerApplication.Controllers
 {
@@ -11,12 +12,14 @@ namespace ColourTrackerApplication.Controllers
     {
         private IList<ColourModel> _colours;
         private readonly IStorageRepository _storageRepository;
+        private readonly IApplicationHelperLibrary _applicationHelperLibrary;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(IStorageRepository storageRepository, ILogger<HomeController> logger)
+        public HomeController(IStorageRepository storageRepository, ILogger<HomeController> logger, IApplicationHelperLibrary applicationHelperLibrary)
         {
             _storageRepository = storageRepository;
             _logger = logger;
+            _applicationHelperLibrary = applicationHelperLibrary;
         }
 
         // GET: /<controller>/
@@ -35,26 +38,8 @@ namespace ColourTrackerApplication.Controllers
 
             var colourModels = _storageRepository.GetAllColours();
 
-            _colours = new List<ColourModel>();
+            _colours = _applicationHelperLibrary.MapColourModelsToJson(colourModels);
 
-            foreach (var colourModel in colourModels)
-            {
-                var colour = new ColourModel();
-                {
-                    colour.Id = colourModel.Id;
-                    colour.Name = colourModel.Name;
-                    colour.Brand = colourModel.Brand;
-                    colour.Expiry = colourModel.Expiry;
-                    colour.SerialNumber = colourModel.SerialNumber;
-                    colour.DateAdded = colourModel.DateAdded;
-                    colour.DateDeleted = colourModel.DateDeleted;
-
-                    if (colour.DateDeleted == null) //Would like to handle this conditional rendering with the react component
-                    {
-                        _colours.Add(colour);
-                    }
-                }
-            }
             return Json(_colours);
         }
 

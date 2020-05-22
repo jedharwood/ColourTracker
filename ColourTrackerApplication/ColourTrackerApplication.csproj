@@ -33,6 +33,9 @@
     <ProjectReference Include="..\ColourTrackerStorageHelper\ColourTrackerStorageHelper.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\ColourTrackerHelperLibraries\ColourTrackerHelperLibraries.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\js\editForm.jsx" />
