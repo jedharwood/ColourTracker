@@ -5,6 +5,6 @@ namespace ColourTrackerHelperLibraries
 {
     public interface IApplicationHelperLibrary
     {
-        List<ColourModel> MapColourModelsToJson(List<ColourModel> colourModels);
+        List<ColourModel> MapColourModelsToJsonAndNullCheckDateDeleted(List<ColourModel> colourModels);
     }
 }
