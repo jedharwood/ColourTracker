@@ -2,25 +2,33 @@
 using ColourTrackerDTOs;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ColourTrackerHelperLibraries;
+using System;
+using System.Linq;
 
 namespace ColourTrackerTests
 {
     [TestClass]
     public class ApplicationHelperLibraryTests
     {
-        [TestMethod]
-        public void MapColourModelsToJsonTest()
+        public List<ColourModel> Colours { get; set; }
+        public ApplicationHelperLibrary Library;
+
+        public ApplicationHelperLibraryTests()
         {
-            //Arrange
-            List<ColourModel> colourModels = new List<ColourModel>
+            Library = new ApplicationHelperLibrary();
+
+            Colours = new List<ColourModel>
             {
-                new ColourModel{                  
+                new ColourModel{
                     Id = 1,
                     Name = "Red",
                     Brand = "Daler",
                     Expiry = "03/22",
                     SerialNumber = null,
-                    DateDeleted = null
+                    DateDeleted = DateTime.Parse("0001-01-01T00:00:00"),
+                    DateModified = null,
+                    DateAdded = DateTime.Parse("0001-01-01T00:00:00")
+
                 },
                 new ColourModel{
                     Id = 2,
@@ -28,7 +36,9 @@ namespace ColourTrackerTests
                     Brand = "Daler",
                     Expiry = "03/22",
                     SerialNumber = null,
-                    DateDeleted = null
+                    DateDeleted = null,
+                    DateModified = null,
+                    DateAdded = DateTime.Parse("0001-01-01T00:00:00")
                 },
                 new ColourModel{
                     Id = 3,
@@ -36,18 +46,64 @@ namespace ColourTrackerTests
                     Brand = "Daler",
                     Expiry = "03/22",
                     SerialNumber = null,
-                    DateDeleted = null
+                    DateDeleted = null,
+                    DateModified = null,
+                    DateAdded = DateTime.Parse("0001-01-01T00:00:00")
                 }
             };
+        }
 
-            var library = new ApplicationHelperLibrary();
-
-            var expected = 3;
+        [TestMethod]
+        public void MapColourModelsToJsonTest()
+        {
+            //Arrange
+            var expected = Colours.Count - 1;
 
             //Act
-            var result = library.MapColourModelsToJson(colourModels);
+            var actual = Library.MapColourModelsToJsonAndNullCheckDateDeleted(Colours).Count;
 
-            var actual = result.Count;
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void CheckForInvalidColourNames()
+        {
+            //Arrange
+            List<ColourModel> invalidNamedColours = new List<ColourModel> { };
+
+            var expected = 0;
+
+            //Act
+            foreach (var colour in Colours)
+            {
+                if (colour.Name == null || colour.Name.GetType() != typeof(string))
+                {
+                    invalidNamedColours.Add(colour);
+                }
+            }
+
+            var actual = invalidNamedColours.Count;
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void VerifyThatIdNumbersAreUnique()
+        {
+            //Arrange
+            List<int> idNumbers = new List<int> { };
+
+            var expected = Colours.Count;
+
+            //Act
+            foreach (var colour in Colours)
+            {
+                idNumbers.Add(colour.Id);
+            }
+
+            var actual = idNumbers.Distinct().Count();
 
             //Assert
             Assert.AreEqual(expected, actual);

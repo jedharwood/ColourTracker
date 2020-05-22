@@ -6,7 +6,7 @@ namespace ColourTrackerHelperLibraries
 {
     public class ApplicationHelperLibrary : IApplicationHelperLibrary
     {
-        public List<ColourModel> MapColourModelsToJson(List<ColourModel> colourModels)
+        public List<ColourModel> MapColourModelsToJsonAndNullCheckDateDeleted(List<ColourModel> colourModels)
         {
             var list = new List<ColourModel>();
 
@@ -21,6 +21,7 @@ namespace ColourTrackerHelperLibraries
                     colour.SerialNumber = colourModel.SerialNumber;
                     colour.DateAdded = colourModel.DateAdded;
                     colour.DateDeleted = colourModel.DateDeleted;
+                    colour.DateModified = colourModel.DateModified;
 
                     if (colour.DateDeleted == null) //Would like to handle this conditional rendering with the react component
                     {

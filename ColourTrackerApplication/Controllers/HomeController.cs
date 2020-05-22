@@ -38,7 +38,7 @@ namespace ColourTrackerApplication.Controllers
 
             var colourModels = _storageRepository.GetAllColours();
 
-            _colours = _applicationHelperLibrary.MapColourModelsToJson(colourModels);
+            _colours = _applicationHelperLibrary.MapColourModelsToJsonAndNullCheckDateDeleted(colourModels);
 
             return Json(_colours);
         }
