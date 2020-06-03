@@ -9,6 +9,10 @@ namespace ColourTrackerStorageHelper
 
         List<ColourModel> GetColoursFromStorage();
 
+        List<ColourFamily> GetColourFamiliesFromStorage();
+
+        List<ColourBrand> GetBrandsFromStorage();
+
         ColourModel SoftDeleteColourFromStorage(ColourModel colour);
 
         ColourModel UpdateColourInStorage(ColourModel colour);

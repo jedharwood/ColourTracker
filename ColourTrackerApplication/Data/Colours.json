@@ -1,0 +1,74 @@
+﻿[
+  {
+    "Id": 1,
+    "ColourName": "Red",
+    "ColourFamily": 4,
+    "Brand": "Waverly",
+    "BrandId": 1,
+    "Expiry": "03/22",
+    "SerialNumber": "A123",
+    "DateAdded": "0001-01-01T00:00:00",
+    "DateDeleted": null,
+    "DateModified": null
+  },
+  {
+    "Id": 2,
+    "ColourName": "Golden Yellow",
+    "ColourFamily": 6,
+    "Brand": "Old Gold",
+    "BrandId": 2,
+    "Expiry": "06/22",
+    "SerialNumber": "B234",
+    "DateAdded": "0001-01-01T00:00:00",
+    "DateDeleted": null,
+    "DateModified": null
+  },
+  {
+    "Id": 3,
+    "ColourName": "Emerald Green",
+    "ColourFamily": 7,
+    "Brand": "Castle Pigment",
+    "BrandId": 3,
+    "Expiry": "12/26",
+    "SerialNumber": "C345",
+    "DateAdded": "0001-01-01T00:00:00",
+    "DateDeleted": null,
+    "DateModified": null
+  },
+  {
+    "Id": 4,
+    "ColourName": "Blue",
+    "ColourFamily": 9,
+    "Brand": "Solid Colour",
+    "BrandId": 4,
+    "Expiry": "12/23",
+    "SerialNumber": "D456",
+    "DateAdded": "0001-01-01T00:00:00",
+    "DateDeleted": null,
+    "DateModified": null
+  },
+  {
+    "Id": 5,
+    "ColourName": "Payne's Gray",
+    "ColourFamily": 3,
+    "Brand": "Waverly",
+    "BrandId": 1,
+    "Expiry": "04/19",
+    "SerialNumber": "E567",
+    "DateAdded": "0001-01-01T00:00:00",
+    "DateDeleted": null,
+    "DateModified": null
+  },
+  {
+    "Id": 6,
+    "ColourName": "Payne's Gray",
+    "ColourFamily": 3,
+    "Brand": "Waverly",
+    "BrandId": 1,
+    "Expiry": "04/19",
+    "SerialNumber": "F678",
+    "DateAdded": "0001-01-01T00:00:00",
+    "DateDeleted": "0001-01-01T00:00:00",
+    "DateModified": null
+  }
+]
