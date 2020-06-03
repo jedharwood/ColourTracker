@@ -21,8 +21,11 @@ namespace ColourTrackerTests
             {
                 new ColourModel{
                     Id = 1,
-                    Name = "Red",
-                    Brand = "Daler",
+                    ColourName = "Red",
+                    BrandName = "Waverly",
+                    BrandId = 1,
+                    ColourFamily = "Black",
+                    ColourFamilyId = 1,
                     Expiry = "03/22",
                     SerialNumber = null,
                     DateDeleted = DateTime.Parse("0001-01-01T00:00:00"),
@@ -32,8 +35,11 @@ namespace ColourTrackerTests
                 },
                 new ColourModel{
                     Id = 2,
-                    Name = "Blue",
-                    Brand = "Daler",
+                    ColourName = "Blue",
+                    BrandName = "Waverly",
+                    BrandId = 1,
+                    ColourFamily = "Black",
+                    ColourFamilyId = 1,
                     Expiry = "03/22",
                     SerialNumber = null,
                     DateDeleted = null,
@@ -42,8 +48,11 @@ namespace ColourTrackerTests
                 },
                 new ColourModel{
                     Id = 3,
-                    Name = "Green",
-                    Brand = "Daler",
+                    ColourName = "Green",
+                    BrandName = "Waverly",
+                    BrandId = 1,
+                    ColourFamily = "Black",
+                    ColourFamilyId = 1,
                     Expiry = "03/22",
                     SerialNumber = null,
                     DateDeleted = null,
@@ -77,7 +86,7 @@ namespace ColourTrackerTests
             //Act
             foreach (var colour in Colours)
             {
-                if (colour.Name == null || colour.Name.GetType() != typeof(string))
+                if (colour.ColourName == null || colour.ColourName.GetType() != typeof(string))
                 {
                     invalidNamedColours.Add(colour);
                 }

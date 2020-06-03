@@ -26,9 +26,27 @@ namespace ColourTrackerRepositories
             return (colours);
         }
 
+        public List<ColourFamilyModel> GetAllColourFamilies()
+        {
+            _logger.LogInformation("Getting all colour families from storage via StorageHelper");
+
+            var colourFamilies = _storageHelper.GetColourFamiliesFromStorage();
+
+            return (colourFamilies);
+        }
+
+        public List<BrandModel> GetAllBrands()
+        {
+            _logger.LogInformation("Getting all brands from storage via StorageHelper");
+
+            var brands = _storageHelper.GetBrandsFromStorage();
+
+            return (brands);
+        }
+
         public ColourModel AddNewColour(ColourModel colour)
         {
-            _logger.LogInformation($"Adding [Colour: {colour.Brand}, {colour.Name}] to storage via StorageHelper");
+            _logger.LogInformation($"Adding [Colour: {colour.BrandName}, {colour.ColourName}] to storage via StorageHelper");
 
             _storageHelper.AddColourToStorage(colour);
 

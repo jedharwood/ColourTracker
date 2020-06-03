@@ -43,6 +43,28 @@ namespace ColourTrackerApplication.Controllers
             return Json(_colours);
         }
 
+        [Route("colourfamilies")]
+        [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
+        public ActionResult GetAllColourFamilies()
+        {
+            _logger.LogInformation("Getting all colour families from storage via StorageRepository");
+
+            var colourFamilies = _storageRepository.GetAllColourFamilies();
+
+            return Json(colourFamilies);
+        }
+
+        [Route("brands")]
+        [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
+        public ActionResult GetAllBrands()
+        {
+            _logger.LogInformation("Getting all brands from storage via StorageRepository");
+
+            var brands = _storageRepository.GetAllBrands();
+
+            return Json(brands);
+        }
+
         [Route("colours/new")]
         [HttpPost]
         public ActionResult AddColour(ColourModel colour)
@@ -55,7 +77,7 @@ namespace ColourTrackerApplication.Controllers
 
             colour.DateDeleted = null;
 
-            _logger.LogInformation($"Adding [Colour: {colour.Brand}, {colour.Name}] to storage via StorageRepository");
+            _logger.LogInformation($"Adding [Colour: {colour.BrandName}, {colour.ColourName}] to storage via StorageRepository");
 
             _storageRepository.AddNewColour(colour);
 
@@ -75,14 +97,14 @@ namespace ColourTrackerApplication.Controllers
             return Content("Your colour has been deleted");
         }
 
-        [Route("colours/populateEditForm")]
-        [HttpPost]
-        public ActionResult Edit([FromForm] ColourModel colour)
-        {
-            _logger.LogInformation($"Receiving parameters for [Colour: {colour.Id}] from view to populate Edit Form");
+        //[Route("colours/populateEditForm")]
+        //[HttpPost]
+        //public ActionResult Edit([FromForm] ColourModel colour)
+        //{
+        //    _logger.LogInformation($"Receiving parameters for [Colour: {colour.Id}] from view to populate Edit Form");
 
-            return View("Edit", colour);
-        }
+        //    return View("Edit", colour);
+        //}
 
         [Route("colours/submitEdit")]
         [HttpPost]

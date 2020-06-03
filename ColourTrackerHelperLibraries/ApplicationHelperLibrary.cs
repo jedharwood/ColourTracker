@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using ColourTrackerDTOs;
 
 namespace ColourTrackerHelperLibraries
@@ -15,8 +14,11 @@ namespace ColourTrackerHelperLibraries
                 var colour = new ColourModel();
                 {
                     colour.Id = colourModel.Id;
-                    colour.Name = colourModel.Name;
-                    colour.Brand = colourModel.Brand;
+                    colour.ColourName = colourModel.ColourName;
+                    colour.ColourFamily = colourModel.ColourFamily;
+                    colour.ColourFamilyId = colourModel.ColourFamilyId;
+                    colour.BrandName = colourModel.BrandName;
+                    colour.BrandId = colourModel.BrandId;
                     colour.Expiry = colourModel.Expiry;
                     colour.SerialNumber = colourModel.SerialNumber;
                     colour.DateAdded = colourModel.DateAdded;

@@ -7,6 +7,10 @@ namespace ColourTrackerRepositories
     {
         List<ColourModel> GetAllColours();
 
+        List<ColourFamilyModel> GetAllColourFamilies();
+
+        List<BrandModel> GetAllBrands();
+
         ColourModel AddNewColour(ColourModel colour);
 
         ColourModel SoftDeleteColour(ColourModel colour);
