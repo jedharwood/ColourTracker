@@ -8,7 +8,13 @@ namespace ColourTrackerDTOs
 
         public string ColourName { get; set; }
 
-        public string Brand { get; set; }
+        public string ColourFamily { get; set; }
+
+        public int ColourFamilyId { get; set; }
+
+        public string BrandName { get; set; }
+
+        public int BrandId { get; set; }
 
         public string Expiry { get; set; }
 

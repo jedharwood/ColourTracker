@@ -15,7 +15,10 @@ namespace ColourTrackerHelperLibraries
                 {
                     colour.Id = colourModel.Id;
                     colour.ColourName = colourModel.ColourName;
-                    colour.Brand = colourModel.Brand;
+                    colour.ColourFamily = colourModel.ColourFamily;
+                    colour.ColourFamilyId = colourModel.ColourFamilyId;
+                    colour.BrandName = colourModel.BrandName;
+                    colour.BrandId = colourModel.BrandId;
                     colour.Expiry = colourModel.Expiry;
                     colour.SerialNumber = colourModel.SerialNumber;
                     colour.DateAdded = colourModel.DateAdded;

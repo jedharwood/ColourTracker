@@ -28,7 +28,7 @@ namespace ColourTrackerStorageHelper
 
         public ColourModel AddColourToStorage(ColourModel colour)
         {
-            _logger.LogInformation($"Adding [Colour: {colour.Brand}, {colour.ColourName}] to storage");
+            _logger.LogInformation($"Adding [Colour: {colour.BrandName}, {colour.ColourName}] to storage");
 
             Colours.Add(colour);
 
@@ -73,7 +73,10 @@ namespace ColourTrackerStorageHelper
                     _logger.LogInformation($"Updating record for [Colour: {colour.Id}]");
 
                     colourModel.ColourName = colour.ColourName;
-                    colourModel.Brand = colour.Brand;
+                    colourModel.ColourFamily = colour.ColourFamily;
+                    colourModel.ColourFamilyId = colour.ColourFamilyId;
+                    colourModel.BrandName = colour.BrandName;
+                    colourModel.BrandId = colour.BrandId;
                     colourModel.Expiry = colour.Expiry;
                     colourModel.SerialNumber = colour.SerialNumber;
                     colourModel.DateModified = colour.DateModified;

@@ -8,7 +8,7 @@ function ColourList(props) {
       <thead>
         <tr>
           <th>Name</th>
-          <th>Brand Id</th>
+          <th>Brand</th>
           <th>Colour Family</th>
           <th>Serial #</th>
           <th>Expiry</th>
@@ -21,7 +21,7 @@ function ColourList(props) {
               <td>
                 <Link to={"/colour/" + colour.id}>{colour.colourName}</Link>
               </td>
-              <td>{colour.brandId}</td>
+              <td>{colour.brandName}</td>
               <td>{colour.colourFamily}</td>
               <td>{colour.serialNumber}</td>
               <td>{colour.expiry}</td>
@@ -38,8 +38,8 @@ ColourList.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       colourName: PropTypes.string.isRequired,
-      brandId: PropTypes.number,
-      colourFamily: PropTypes.number,
+      brandName: PropTypes.string,
+      colourFamily: PropTypes.string,
       expiry: PropTypes.string,
       serialNumber: PropTypes.string,
     })

@@ -28,7 +28,7 @@ namespace ColourTrackerRepositories
 
         public ColourModel AddNewColour(ColourModel colour)
         {
-            _logger.LogInformation($"Adding [Colour: {colour.Brand}, {colour.ColourName}] to storage via StorageHelper");
+            _logger.LogInformation($"Adding [Colour: {colour.BrandName}, {colour.ColourName}] to storage via StorageHelper");
 
             _storageHelper.AddColourToStorage(colour);
 
