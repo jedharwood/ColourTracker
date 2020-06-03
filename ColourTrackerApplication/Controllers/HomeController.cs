@@ -43,6 +43,28 @@ namespace ColourTrackerApplication.Controllers
             return Json(_colours);
         }
 
+        [Route("colourfamilies")]
+        [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
+        public ActionResult GetAllColourFamilies()
+        {
+            _logger.LogInformation("Getting all colour families from storage via StorageRepository");
+
+            var colourFamilies = _storageRepository.GetAllColourFamilies();
+
+            return Json(colourFamilies);
+        }
+
+        [Route("brands")]
+        [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
+        public ActionResult GetAllBrands()
+        {
+            _logger.LogInformation("Getting all brands from storage via StorageRepository");
+
+            var brands = _storageRepository.GetAllBrands();
+
+            return Json(brands);
+        }
+
         [Route("colours/new")]
         [HttpPost]
         public ActionResult AddColour(ColourModel colour)
