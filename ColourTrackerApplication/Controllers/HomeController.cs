@@ -55,7 +55,7 @@ namespace ColourTrackerApplication.Controllers
 
             colour.DateDeleted = null;
 
-            _logger.LogInformation($"Adding [Colour: {colour.Brand}, {colour.Name}] to storage via StorageRepository");
+            _logger.LogInformation($"Adding [Colour: {colour.Brand}, {colour.ColourName}] to storage via StorageRepository");
 
             _storageRepository.AddNewColour(colour);
 

@@ -21,7 +21,7 @@ namespace ColourTrackerTests
             {
                 new ColourModel{
                     Id = 1,
-                    Name = "Red",
+                    ColourName = "Red",
                     Brand = "Daler",
                     Expiry = "03/22",
                     SerialNumber = null,
@@ -32,7 +32,7 @@ namespace ColourTrackerTests
                 },
                 new ColourModel{
                     Id = 2,
-                    Name = "Blue",
+                    ColourName = "Blue",
                     Brand = "Daler",
                     Expiry = "03/22",
                     SerialNumber = null,
@@ -42,7 +42,7 @@ namespace ColourTrackerTests
                 },
                 new ColourModel{
                     Id = 3,
-                    Name = "Green",
+                    ColourName = "Green",
                     Brand = "Daler",
                     Expiry = "03/22",
                     SerialNumber = null,
@@ -77,7 +77,7 @@ namespace ColourTrackerTests
             //Act
             foreach (var colour in Colours)
             {
-                if (colour.Name == null || colour.Name.GetType() != typeof(string))
+                if (colour.ColourName == null || colour.ColourName.GetType() != typeof(string))
                 {
                     invalidNamedColours.Add(colour);
                 }

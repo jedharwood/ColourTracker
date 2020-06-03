@@ -33,6 +33,15 @@ namespace ColourTrackerApplication
 
             services.AddTransient<IApplicationHelperLibrary, ApplicationHelperLibrary>();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", builder =>
+                {
+                    builder.AllowAnyOrigin();
+                    builder.AllowAnyHeader();
+                });
+            });
+
             services.AddReact();
 
             services.AddJsEngineSwitcher(options => options.DefaultEngineName = ChakraCoreJsEngine.EngineName)
@@ -53,6 +62,9 @@ namespace ColourTrackerApplication
                 
                 app.UseHsts();
             }
+
+            app.UseCors("AllowAll");
+
             app.UseHttpsRedirection();
 
             app.UseReact(config =>

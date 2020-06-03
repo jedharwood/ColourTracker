@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColourTrackerDTOs", "Colour
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColourTrackerRepositories", "ColourTrackerRepositories\ColourTrackerRepositories.csproj", "{93C450D5-2AAB-4644-9ACE-8AE0ADC749AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColourTrackerTests", "ColourTrackerTests\ColourTrackerTests.csproj", "{34B925AA-2532-447B-B0F8-FB9C0373168F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColourTrackerTests", "ColourTrackerTests\ColourTrackerTests.csproj", "{285AF780-1607-4698-9F6F-1B7F2E23689F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColourTrackerHelperLibraries", "ColourTrackerHelperLibraries\ColourTrackerHelperLibraries.csproj", "{90DA924D-16C2-44BF-8909-EF364D94C8B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColourTrackerHelperLibraries", "ColourTrackerHelperLibraries\ColourTrackerHelperLibraries.csproj", "{CB4DD8D2-50F7-4BD3-BB03-3FDBB0615102}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,13 +35,13 @@ Global
 		{93C450D5-2AAB-4644-9ACE-8AE0ADC749AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93C450D5-2AAB-4644-9ACE-8AE0ADC749AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93C450D5-2AAB-4644-9ACE-8AE0ADC749AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{34B925AA-2532-447B-B0F8-FB9C0373168F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{34B925AA-2532-447B-B0F8-FB9C0373168F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{34B925AA-2532-447B-B0F8-FB9C0373168F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{34B925AA-2532-447B-B0F8-FB9C0373168F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{90DA924D-16C2-44BF-8909-EF364D94C8B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{90DA924D-16C2-44BF-8909-EF364D94C8B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{90DA924D-16C2-44BF-8909-EF364D94C8B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{90DA924D-16C2-44BF-8909-EF364D94C8B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{285AF780-1607-4698-9F6F-1B7F2E23689F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{285AF780-1607-4698-9F6F-1B7F2E23689F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{285AF780-1607-4698-9F6F-1B7F2E23689F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{285AF780-1607-4698-9F6F-1B7F2E23689F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB4DD8D2-50F7-4BD3-BB03-3FDBB0615102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB4DD8D2-50F7-4BD3-BB03-3FDBB0615102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB4DD8D2-50F7-4BD3-BB03-3FDBB0615102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB4DD8D2-50F7-4BD3-BB03-3FDBB0615102}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

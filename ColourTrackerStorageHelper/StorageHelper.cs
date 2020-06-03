@@ -19,7 +19,7 @@ namespace ColourTrackerStorageHelper
             _logger = logger;
             _configuration = configuration;
 
-            using (StreamReader streamReader = new StreamReader(_configuration["Storage:Location"]))
+            using (StreamReader streamReader = new StreamReader(_configuration["Storage:Colours"]))
             {
                 string jsonContent = streamReader.ReadToEnd();
                 Colours = JsonConvert.DeserializeObject<List<ColourModel>>(jsonContent);
@@ -28,7 +28,7 @@ namespace ColourTrackerStorageHelper
 
         public ColourModel AddColourToStorage(ColourModel colour)
         {
-            _logger.LogInformation($"Adding [Colour: {colour.Brand}, {colour.Name}] to storage");
+            _logger.LogInformation($"Adding [Colour: {colour.Brand}, {colour.ColourName}] to storage");
 
             Colours.Add(colour);
 
@@ -41,7 +41,7 @@ namespace ColourTrackerStorageHelper
         {
             _logger.LogInformation("Getting all colours from storage");
 
-            using (StreamReader r = new StreamReader(_configuration["Storage:Location"]))
+            using (StreamReader r = new StreamReader(_configuration["Storage:Colours"]))
             {
                 return (Colours);
             }
@@ -72,7 +72,7 @@ namespace ColourTrackerStorageHelper
                 {
                     _logger.LogInformation($"Updating record for [Colour: {colour.Id}]");
 
-                    colourModel.Name = colour.Name;
+                    colourModel.ColourName = colour.ColourName;
                     colourModel.Brand = colour.Brand;
                     colourModel.Expiry = colour.Expiry;
                     colourModel.SerialNumber = colour.SerialNumber;
@@ -87,7 +87,7 @@ namespace ColourTrackerStorageHelper
 
         public void SaveChanges()
         {
-            using (StreamWriter file = File.CreateText(_configuration["Storage:Location"]))
+            using (StreamWriter file = File.CreateText(_configuration["Storage:Colours"]))
             {
                 _logger.LogInformation("Saving changes");
 
