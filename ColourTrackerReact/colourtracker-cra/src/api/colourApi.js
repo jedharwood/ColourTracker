@@ -6,15 +6,19 @@ export function getColours() {
 }
 
 export function getColourById(id) {
-  return fetch(baseUrl + "?id=" + id)
-    .then((response) => {
-      if (!response.ok) throw new Error("Network response was not ok.");
-      return response.json().then((colours) => {
-        if (colours.length !== 1) throw new Error("Colour not found: " + id);
-        return colours[0]; // should only find one colour for a given Id, so return it.
-      });
-    })
-    .catch(handleError);
+  // return fetch(baseUrl + "?id=" + id)
+  return (
+    fetch(baseUrl + id)
+      // .then((response) => {
+      //   if (!response.ok) throw new Error("Network response was not ok.");
+      //   return response.json().then((colours) => {
+      //     if (colours.length !== 1) throw new Error("Colour not found: " + id);
+      //     return colours[0]; // should only find one colour for a given Id, so return it.
+      //   });
+      // })
+      .then(handleResponse)
+      .catch(handleError)
+  );
 }
 
 export function saveColour(colour) {

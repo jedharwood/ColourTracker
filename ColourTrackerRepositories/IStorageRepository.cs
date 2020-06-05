@@ -11,6 +11,8 @@ namespace ColourTrackerRepositories
 
         List<BrandModel> GetAllBrands();
 
+        ColourModel GetColourById(int colourId);
+
         ColourModel AddNewColour(ColourModel colour);
 
         ColourModel SoftDeleteColour(ColourModel colour);

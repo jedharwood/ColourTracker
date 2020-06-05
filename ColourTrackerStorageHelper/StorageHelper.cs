@@ -22,6 +22,7 @@ namespace ColourTrackerStorageHelper
             using (StreamReader streamReader = new StreamReader(_configuration["Storage:Colours"]))
             {
                 string jsonContent = streamReader.ReadToEnd();
+
                 Colours = JsonConvert.DeserializeObject<List<ColourModel>>(jsonContent);
             }
         }
@@ -45,6 +46,15 @@ namespace ColourTrackerStorageHelper
             {
                 return (Colours);
             }
+        }
+
+        public ColourModel GetColourFromStorageById(int colourId)
+        {
+            _logger.LogInformation($"Getting [Colour: {colourId}] from storage");
+
+            var colourModel = GetById(colourId);
+
+            return (colourModel);
         }
 
         public List<ColourFamilyModel> GetColourFamiliesFromStorage()
@@ -125,6 +135,23 @@ namespace ColourTrackerStorageHelper
                 JsonSerializer jsonSerializer = new JsonSerializer();
                 jsonSerializer.Serialize(file, Colours);
             }
+        }
+
+        private ColourModel GetById(int colourId)
+        {
+            var colourModel = new ColourModel();
+
+            for (var i = 0; i < Colours.Count; i++)
+            {
+                if (Colours[i].Id == colourId)
+                {
+                    colourModel = Colours[i];
+
+                    break;
+                }
+            }
+
+            return (colourModel);
         }
     }
 }

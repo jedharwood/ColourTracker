@@ -44,6 +44,15 @@ namespace ColourTrackerRepositories
             return (brands);
         }
 
+        public ColourModel GetColourById(int colourId)
+        {
+            _logger.LogInformation($"Getting [Colour: {colourId}] from storage via Storage Helper");
+
+            var colourModel = _storageHelper.GetColourFromStorageById(colourId);
+
+            return (colourModel);
+        }
+
         public ColourModel AddNewColour(ColourModel colour)
         {
             _logger.LogInformation($"Adding [Colour: {colour.BrandName}, {colour.ColourName}] to storage via StorageHelper");
