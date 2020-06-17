@@ -1,0 +1,41 @@
+﻿[
+  {
+    "Id": 1,
+    "ColourName": "Red",
+    "ColourFamily": "Red",
+    "ColourFamilyId": 4,
+    "BrandName": "Waverly",
+    "BrandId": 4,
+    "Expiry": "03/22",
+    "SerialNumber": "sdjfvs",
+    "DateAdded": "0001-01-01T00:00:00",
+    "DateDeleted": "0001-01-01T00:00:00",
+    "DateModified": null
+  },
+  {
+    "Id": 2,
+    "ColourName": "Golden Yellow",
+    "ColourFamily": "Yellow",
+    "ColourFamilyId": 6,
+    "BrandName": "Old Gold",
+    "BrandId": 2,
+    "Expiry": "06/22",
+    "SerialNumber": "234jh",
+    "DateAdded": "0001-01-01T00:00:00",
+    "DateDeleted": null,
+    "DateModified": null
+  },
+  {
+    "Id": 3,
+    "ColourName": "Emerald Green",
+    "ColourFamily": "Green",
+    "ColourFamilyId": 7,
+    "BrandName": "Castle Pigment",
+    "BrandId": 3,
+    "Expiry": "12/26",
+    "SerialNumber": "wr978",
+    "DateAdded": "0001-01-01T00:00:00",
+    "DateDeleted": null,
+    "DateModified": null
+  }
+]

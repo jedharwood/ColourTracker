@@ -78,13 +78,13 @@ namespace ColourTrackerApplication.Controllers
 
         [Route("colours/new")]
         [HttpPost]
-        public ActionResult AddColour(ColourModel colour)
+        public ActionResult AddColour([FromBody]ColourModel colour)
         {
             _colours = _storageRepository.GetAllColours();
 
-            colour.Id = _colours.Count + 1;
+            colour.Id = _colours.Count + 1;  //null reference exception
 
-            colour.DateAdded = DateTime.Now;
+            colour.DateAdded = DateTime.Now;  //move to helper
 
             colour.DateDeleted = null;
 
@@ -92,15 +92,13 @@ namespace ColourTrackerApplication.Controllers
 
             _storageRepository.AddNewColour(colour);
 
-            return Content("Your colour has been added");
+            return Content("Your colour has been added");  //return status?
         }
 
         [Route("colours/softDelete/{colour.Id}")]
         [HttpPost]
         public ActionResult SoftDeleteColour(ColourModel colour)
         {
-            colour.DateDeleted = DateTime.Now;
-
             _logger.LogInformation($"Soft Deleting [Colour: {colour.Id}] from storage via StorageRepository");
 
             _storageRepository.SoftDeleteColour(colour);
@@ -112,7 +110,7 @@ namespace ColourTrackerApplication.Controllers
         [HttpPost]
         public ActionResult UpdateColour(ColourModel colour)
         {
-            colour.DateModified = DateTime.Now;
+            colour.DateModified = DateTime.Now;  //move to helper
 
             _logger.LogInformation($"Updating record for [Colour: {colour.Id}] via StorageRepository");
 

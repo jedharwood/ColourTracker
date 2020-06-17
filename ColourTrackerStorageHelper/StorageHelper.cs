@@ -4,70 +4,31 @@ using ColourTrackerDTOs;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-
+using ColourTrackerHelperLibraries;
+using System;
 
 namespace ColourTrackerStorageHelper
 {
     public class StorageHelper : IStorageHelper 
     {
         private IConfiguration _configuration;
+        private IStorageHelperHelperLibrary _storageHelperLibrary;
         public List<ColourModel> Colours { get; set; }
         private readonly ILogger<StorageHelper> _logger;
+        public string _colourStoragePath; 
 
-        public StorageHelper(IConfiguration configuration, ILogger<StorageHelper> logger)
+        public StorageHelper(IConfiguration configuration, ILogger<StorageHelper> logger, IStorageHelperHelperLibrary storageHelperLibrary)
         {
             _logger = logger;
             _configuration = configuration;
+            _storageHelperLibrary = storageHelperLibrary;
+            _colourStoragePath = _configuration["Storage:Colours"];
 
-            using (StreamReader streamReader = new StreamReader(_configuration["Storage:Colours"]))
+            using (StreamReader streamReader = new StreamReader(_colourStoragePath))
             {
                 string jsonContent = streamReader.ReadToEnd();
 
                 Colours = JsonConvert.DeserializeObject<List<ColourModel>>(jsonContent);
-            }
-        }
-
-        public ColourModel AddColourToStorage(ColourModel colour)
-        {
-            _logger.LogInformation($"Adding [Colour: {colour.BrandName}, {colour.ColourName}] to storage");
-
-            Colours.Add(colour);
-
-            SaveChanges();
-
-            return (colour);
-        }
-
-        public List<ColourModel> GetColoursFromStorage()
-        {
-            _logger.LogInformation("Getting all colours from storage");
-
-            using (StreamReader r = new StreamReader(_configuration["Storage:Colours"]))
-            {
-                return (Colours);
-            }
-        }
-
-        public ColourModel GetColourFromStorageById(int colourId)
-        {
-            _logger.LogInformation($"Getting [Colour: {colourId}] from storage");
-
-            var colourModel = GetById(colourId);
-
-            return (colourModel);
-        }
-
-        public List<ColourFamilyModel> GetColourFamiliesFromStorage()
-        {
-            _logger.LogInformation("Getting all colour families from storage");
-
-            using (StreamReader r = new StreamReader(_configuration["Storage:ColourFamilies"]))
-            {
-                string jsonContent = r.ReadToEnd();
-
-                var colourFamilies= JsonConvert.DeserializeObject<List<ColourFamilyModel>>(jsonContent);
-
-                return (colourFamilies);
             }
         }
 
@@ -85,73 +46,69 @@ namespace ColourTrackerStorageHelper
             }
         }
 
-        public ColourModel SoftDeleteColourFromStorage(ColourModel colour)
+        public List<ColourFamilyModel> GetColourFamiliesFromStorage()
         {
-            foreach (var colourModel in Colours)
+            _logger.LogInformation("Getting all colour families from storage");
+
+            using (StreamReader r = new StreamReader(_configuration["Storage:ColourFamilies"]))
             {
-                if (colourModel.Id == colour.Id)
-                {
-                    _logger.LogInformation($"Soft Deleting [Colour: {colour.Id}] from storage");
+                string jsonContent = r.ReadToEnd();
 
-                    colourModel.DateDeleted = colour.DateDeleted;
-                }               
+                var colourFamilies = JsonConvert.DeserializeObject<List<ColourFamilyModel>>(jsonContent);
+
+                return (colourFamilies);
             }
+        }
 
-            SaveChanges();
+        public List<ColourModel> GetColoursFromStorage()
+        {
+            _logger.LogInformation("Getting all colours from storage");
+
+            return (Colours);
+        }
+
+        public ColourModel GetColourFromStorageById(int colourId)
+        {
+            _logger.LogInformation($"Getting [Colour: {colourId}] from storage");
+
+            var colourModel = _storageHelperLibrary.GetById(Colours, colourId);
+
+            return (colourModel);
+        }
+
+        public ColourModel AddColourToStorage(ColourModel colour)
+        {
+            _logger.LogInformation($"Adding [Colour: {colour.BrandName}, {colour.ColourName}] to storage");
+
+            Colours.Add(colour);
+
+            _storageHelperLibrary.SaveChanges(Colours, _colourStoragePath);
 
             return (colour);
         }
 
         public ColourModel UpdateColourInStorage(ColourModel colour)
-        {
-            foreach (var colourModel in Colours)
-            {
-                if (colourModel.Id == colour.Id)
-                {
-                    _logger.LogInformation($"Updating record for [Colour: {colour.Id}]");
+        { 
+            _storageHelperLibrary.MapUpdatedColourModel(Colours, colour);
 
-                    colourModel.ColourName = colour.ColourName;
-                    colourModel.ColourFamily = colour.ColourFamily;
-                    colourModel.ColourFamilyId = colour.ColourFamilyId;
-                    colourModel.BrandName = colour.BrandName;
-                    colourModel.BrandId = colour.BrandId;
-                    colourModel.Expiry = colour.Expiry;
-                    colourModel.SerialNumber = colour.SerialNumber;
-                    colourModel.DateModified = colour.DateModified;
-                }
-            }
+            _logger.LogInformation($"Updating record for [Colour: {colour.Id}]");
 
-            SaveChanges();
+            _storageHelperLibrary.SaveChanges(Colours, _colourStoragePath);
 
             return (colour);
         }
 
-        public void SaveChanges()
+        public ColourModel SoftDeleteColourFromStorage(ColourModel colour)
         {
-            using (StreamWriter file = File.CreateText(_configuration["Storage:Colours"]))
-            {
-                _logger.LogInformation("Saving changes");
+            var colourModel = _storageHelperLibrary.GetById(Colours, colour.Id);
 
-                JsonSerializer jsonSerializer = new JsonSerializer();
-                jsonSerializer.Serialize(file, Colours);
-            }
-        }
+            colourModel.DateDeleted = DateTime.Now;
 
-        private ColourModel GetById(int colourId)
-        {
-            var colourModel = new ColourModel();
+            _logger.LogInformation($"Soft Deleting [Colour: {colour.Id}] from storage");
 
-            for (var i = 0; i < Colours.Count; i++)
-            {
-                if (Colours[i].Id == colourId)
-                {
-                    colourModel = Colours[i];
+            _storageHelperLibrary.SaveChanges(Colours, _colourStoragePath);
 
-                    break;
-                }
-            }
-
-            return (colourModel);
+            return (colour);
         }
     }
 }

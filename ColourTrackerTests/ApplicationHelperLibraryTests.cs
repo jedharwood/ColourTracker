@@ -4,6 +4,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ColourTrackerHelperLibraries;
 using System;
 using System.Linq;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace ColourTrackerTests
 {
@@ -17,49 +19,14 @@ namespace ColourTrackerTests
         {
             Library = new ApplicationHelperLibrary();
 
-            Colours = new List<ColourModel>
-            {
-                new ColourModel{
-                    Id = 1,
-                    ColourName = "Red",
-                    BrandName = "Waverly",
-                    BrandId = 1,
-                    ColourFamily = "Black",
-                    ColourFamilyId = 1,
-                    Expiry = "03/22",
-                    SerialNumber = null,
-                    DateDeleted = DateTime.Parse("0001-01-01T00:00:00"),
-                    DateModified = null,
-                    DateAdded = DateTime.Parse("0001-01-01T00:00:00")
+            string path = AppDomain.CurrentDomain.BaseDirectory + "Data/TestingMockColourData.json";
 
-                },
-                new ColourModel{
-                    Id = 2,
-                    ColourName = "Blue",
-                    BrandName = "Waverly",
-                    BrandId = 1,
-                    ColourFamily = "Black",
-                    ColourFamilyId = 1,
-                    Expiry = "03/22",
-                    SerialNumber = null,
-                    DateDeleted = null,
-                    DateModified = null,
-                    DateAdded = DateTime.Parse("0001-01-01T00:00:00")
-                },
-                new ColourModel{
-                    Id = 3,
-                    ColourName = "Green",
-                    BrandName = "Waverly",
-                    BrandId = 1,
-                    ColourFamily = "Black",
-                    ColourFamilyId = 1,
-                    Expiry = "03/22",
-                    SerialNumber = null,
-                    DateDeleted = null,
-                    DateModified = null,
-                    DateAdded = DateTime.Parse("0001-01-01T00:00:00")
-                }
-            };
+            using (StreamReader streamReader = new StreamReader(path))
+            {
+                string jsonContent = streamReader.ReadToEnd();
+
+                Colours = JsonConvert.DeserializeObject<List<ColourModel>>(jsonContent);
+            }
         }
 
         [TestMethod]

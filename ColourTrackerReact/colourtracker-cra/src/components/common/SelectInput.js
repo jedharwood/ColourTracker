@@ -20,7 +20,11 @@ function SelectInput(props) {
         >
           <option value="" />
           {props.values.map((_value) => {
-            return <option value={_value.id}>{_value.name}</option>;
+            return (
+              <option key={_value.id} value={_value.id}>
+                {_value.name}
+              </option>
+            );
           })}
         </select>
       </div>
@@ -34,7 +38,7 @@ SelectInput.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.string,
+  value: PropTypes.number,
   error: PropTypes.string,
 };
 

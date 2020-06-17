@@ -16,4 +16,12 @@
   <ItemGroup>
     <ProjectReference Include="..\ColourTrackerHelperLibraries\ColourTrackerHelperLibraries.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Data\TestingMockColourData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
