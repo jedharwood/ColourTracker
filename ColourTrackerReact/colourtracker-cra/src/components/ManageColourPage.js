@@ -9,7 +9,7 @@ const ManageColourPage = (props) => {
     id: null,
     colourName: "",
     brandId: null,
-    colourFamily: "",
+    colourFamilyId: null,
   });
 
   useEffect(() => {

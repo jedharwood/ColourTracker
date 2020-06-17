@@ -33,12 +33,15 @@ namespace ColourTrackerApplication
 
             services.AddTransient<IApplicationHelperLibrary, ApplicationHelperLibrary>();
 
+            services.AddTransient<IStorageHelperHelperLibrary, StorageHelperHelperLibrary>();
+
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll", builder =>
                 {
                     builder.AllowAnyOrigin();
                     builder.AllowAnyHeader();
+                    //builder.AllowAnyMethod();
                 });
             });
 

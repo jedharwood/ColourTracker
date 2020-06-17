@@ -32,7 +32,7 @@ function ColourForm(props) {
       />
 
       <SelectInput
-        id="brand"
+        id="brandId"
         label="Brand"
         onChange={props.onChange}
         name="brandId"
@@ -42,12 +42,12 @@ function ColourForm(props) {
       />
 
       <SelectInput
-        id="colourFamily"
+        id="colourFamilyId"
         label="Colour Family"
         onChange={props.onChange}
-        name="colourFamily"
-        error={props.errors.colourFamily}
-        value={props.colour.colourFamily}
+        name="colourFamilyId"
+        error={props.errors.colourFamilyId}
+        value={props.colour.colourFamilyId}
         values={colourFamilies}
       />
 

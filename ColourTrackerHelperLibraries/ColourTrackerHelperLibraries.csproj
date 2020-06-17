@@ -7,4 +7,8 @@
   <ItemGroup>
     <ProjectReference Include="..\ColourTrackerDTOs\ColourTrackerDTOs.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.4" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
+  </ItemGroup>
 </Project>

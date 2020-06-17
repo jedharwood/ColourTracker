@@ -30,19 +30,6 @@ namespace ColourTrackerApplication.Controllers
             return View();
         }
 
-        [Route("colours")]
-        [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
-        public ActionResult GetAllColours()
-        {
-            _logger.LogInformation("Getting all colours from storage via StorageRepository");
-
-            var colourModels = _storageRepository.GetAllColours();
-
-            _colours = _applicationHelperLibrary.MapColourModelsToJsonAndNullCheckDateDeleted(colourModels);
-
-            return Json(_colours);
-        }
-
         [Route("colourfamilies")]
         [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
         public ActionResult GetAllColourFamilies()
@@ -65,15 +52,39 @@ namespace ColourTrackerApplication.Controllers
             return Json(brands);
         }
 
+        [Route("colours")]
+        [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
+        public ActionResult GetAllColours()
+        {
+            _logger.LogInformation("Getting all colours from storage via StorageRepository");
+
+            var colourModels = _storageRepository.GetAllColours();
+
+            _colours = _applicationHelperLibrary.MapColourModelsToJsonAndNullCheckDateDeleted(colourModels);
+
+            return Json(_colours);
+        }
+
+        [Route("colours/{colour.Id}")]
+        [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
+        public ActionResult GetColourById(ColourModel colour)
+        {
+            _logger.LogInformation($"Getting [Colour: {colour.Id}] by from storage via StorageRepository");
+
+            var colours = _storageRepository.GetColourById(colour.Id);
+
+            return Json(colours);
+        }
+
         [Route("colours/new")]
         [HttpPost]
-        public ActionResult AddColour(ColourModel colour)
+        public ActionResult AddColour([FromBody]ColourModel colour)
         {
             _colours = _storageRepository.GetAllColours();
 
-            colour.Id = _colours.Count + 1;
+            colour.Id = _colours.Count + 1;  //null reference exception
 
-            colour.DateAdded = DateTime.Now;
+            colour.DateAdded = DateTime.Now;  //move to helper
 
             colour.DateDeleted = null;
 
@@ -81,15 +92,13 @@ namespace ColourTrackerApplication.Controllers
 
             _storageRepository.AddNewColour(colour);
 
-            return Content("Your colour has been added");
+            return Content("Your colour has been added");  //return status?
         }
 
         [Route("colours/softDelete/{colour.Id}")]
         [HttpPost]
         public ActionResult SoftDeleteColour(ColourModel colour)
         {
-            colour.DateDeleted = DateTime.Now;
-
             _logger.LogInformation($"Soft Deleting [Colour: {colour.Id}] from storage via StorageRepository");
 
             _storageRepository.SoftDeleteColour(colour);
@@ -97,20 +106,11 @@ namespace ColourTrackerApplication.Controllers
             return Content("Your colour has been deleted");
         }
 
-        //[Route("colours/populateEditForm")]
-        //[HttpPost]
-        //public ActionResult Edit([FromForm] ColourModel colour)
-        //{
-        //    _logger.LogInformation($"Receiving parameters for [Colour: {colour.Id}] from view to populate Edit Form");
-
-        //    return View("Edit", colour);
-        //}
-
         [Route("colours/submitEdit")]
         [HttpPost]
         public ActionResult UpdateColour(ColourModel colour)
         {
-            colour.DateModified = DateTime.Now;
+            colour.DateModified = DateTime.Now;  //move to helper
 
             _logger.LogInformation($"Updating record for [Colour: {colour.Id}] via StorageRepository");
 
