@@ -36,11 +36,19 @@ export function getColourById(id) {
 // }
 
 export function saveColour(colour) {
-  const data = JSON.stringify(colour);
+  colour.id = 1;
+  colour.colourFamily = "Red";
+  colour.brandName = "Eternal";
+  colour.dateAdded = null;
+  colour.dateDeleted = null;
+  colour.dateModified = null;
+  colour.brandId = parseInt(colour.brandId, 10);
+  colour.colourFamilyId = parseInt(colour.colourFamilyId, 10);
+  const payload = JSON.stringify(colour);
   return fetch(baseUrl + "new", {
-    method: "POST", // POST for create, PUT to update when id already exists.
+    method: "POST",
     headers: { "content-type": "application/json" },
-    body: data,
+    body: payload,
   })
     .then(handleResponse)
     .catch(handleError);
