@@ -20,7 +20,7 @@ namespace ColourTrackerDTOs
 
         public string SerialNumber { get; set; }
 
-        public DateTime DateAdded { get; set; }
+        public DateTime? DateAdded { get; set; }
 
         public DateTime? DateDeleted { get; set; }
 
